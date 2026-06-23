@@ -462,6 +462,8 @@ html, body {
   place-items: center;
 }
 .fighter-svg { width: 132px; height: 150px; overflow: visible; }
+.fighter-img { width: 132px; height: 150px; object-fit: contain; position: relative; z-index: 1; }
+.fighter-aura { position: absolute; inset: -20px; border-radius: 50%; pointer-events: none; }
 
 .aura {
   transform-origin: 50% 60%;
