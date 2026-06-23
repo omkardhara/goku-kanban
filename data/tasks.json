@@ -1,0 +1,58 @@
+{
+  "week": "2026-W26",
+  "tasks": [
+    {
+      "id": "wk_2026-W26_welcome",
+      "title": "Welcome to your power-up board",
+      "notes": "New tasks land here every week from your weekly summary. Drag a card to 'Done' to power up. You can also add cards manually with the + button.",
+      "column": "todo",
+      "source": "weekly",
+      "week": "2026-W26",
+      "flags": ["info"],
+      "priority": "low",
+      "checklist": [
+        { "id": "c_w1", "text": "Drag this card to Done to see the transformation", "done": false },
+        { "id": "c_w2", "text": "Add your own card with the + button", "done": false },
+        { "id": "c_w3", "text": "Tick a checklist item to charge ki", "done": false }
+      ]
+    },
+    {
+      "id": "wk_2026-W26_sample-followups",
+      "title": "Clear this week's follow-ups",
+      "notes": "Example of a task carried in from the weekly summary.",
+      "column": "todo",
+      "source": "weekly",
+      "week": "2026-W26",
+      "flags": ["work"],
+      "priority": "high",
+      "dueDate": "2026-06-27",
+      "checklist": []
+    },
+    {
+      "id": "wk_2026-W26_sample-doing",
+      "title": "Finish the deck for review",
+      "notes": "",
+      "column": "doing",
+      "source": "weekly",
+      "week": "2026-W26",
+      "flags": ["work"],
+      "priority": "med",
+      "checklist": [
+        { "id": "c_d1", "text": "Draft outline", "done": true },
+        { "id": "c_d2", "text": "Add charts", "done": false }
+      ]
+    },
+    {
+      "id": "wk_2026-W26_sample-done",
+      "title": "Send Monday status update",
+      "notes": "",
+      "column": "done",
+      "source": "weekly",
+      "week": "2026-W26",
+      "flags": ["work"],
+      "priority": "low",
+      "completedAt": "2026-06-22T09:00:00.000Z",
+      "checklist": []
+    }
+  ]
+}
