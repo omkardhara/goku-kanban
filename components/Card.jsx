@@ -9,7 +9,7 @@ function fmtDue(d) {
   }
 }
 
-export default function Card({ task, onOpen, onToggleCheck, onDragStart, onDragEnd }) {
+export default function Card({ task, onOpen, onToggleCheck, onMoveDone, onDragStart, onDragEnd }) {
   const isDone = task.column === "done";
   const checks = task.checklist || [];
   const links = task.links || [];
@@ -65,6 +65,13 @@ export default function Card({ task, onOpen, onToggleCheck, onDragStart, onDragE
         {links.length > 0 && <span>🔗 {links.length}</span>}
         {task.notes && <span title="Has a description">≡</span>}
         {task.week && <span className="week-tag">{task.week}</span>}
+        {!isDone && (
+          <button
+            className="card-done-btn"
+            title="Mark as done"
+            onClick={(e) => { e.stopPropagation(); onMoveDone && onMoveDone(task.id, e.clientX, e.clientY); }}
+          >✓ Done</button>
+        )}
       </div>
     </div>
   );

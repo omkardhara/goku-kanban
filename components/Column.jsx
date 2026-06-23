@@ -10,6 +10,7 @@ export default function Column({
   onOpen,
   onToggleCheck,
   onAddCard,
+  onMoveDone,
   onDragStart,
   onDragEnd,
 }) {
@@ -45,6 +46,7 @@ export default function Column({
           task={t}
           onOpen={onOpen}
           onToggleCheck={onToggleCheck}
+          onMoveDone={onMoveDone}
           onDragStart={onDragStart}
           onDragEnd={onDragEnd}
         />

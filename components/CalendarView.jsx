@@ -70,7 +70,7 @@ export default function CalendarView({ events = [], onDelete, onAdd }) {
                   <div className="cal-event-top">
                     {e.time && <span className="cal-time">{e.time}</span>}
                     <span className="cal-title">{e.title}</span>
-                    <button className="mini-del" onClick={() => onDelete(e.id)} aria-label="Remove">×</button>
+                    <button className="mini-del" onClick={() => { if (window.confirm('Delete this meeting?')) onDelete(e.id); }} aria-label="Remove">×</button>
                   </div>
                   {e.location && <div className="cal-loc">📍 {e.location}</div>}
                   {e.attendees && <div className="cal-att">👥 {e.attendees}</div>}

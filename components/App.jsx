@@ -188,18 +188,20 @@ export default function App() {
 
   if (needKey) {
     return (
-      <div className="gate">
+      <>
         <Backgrounds view="board" />
-        <div className="modal">
-          <div className="title">⚡ Power-Up Board</div>
-          <p className="muted" style={{ fontSize: 13 }}>Enter your board access key to continue.</p>
-          <form onSubmit={submitKey}>
-            <input className="input" type="password" autoFocus placeholder="Access key" value={keyInput} onChange={(e) => setKeyInput(e.target.value)} />
-            <div className="modal-actions"><button className="btn btn-primary" type="submit">Enter</button></div>
-          </form>
-          {error && <div className="error">{error}</div>}
+        <div className="gate">
+          <div className="modal">
+            <div className="title">⚡ Power-Up Board</div>
+            <p className="muted" style={{ fontSize: 13 }}>Enter your board access key to continue.</p>
+            <form onSubmit={submitKey}>
+              <input className="input" type="password" autoFocus placeholder="Access key" value={keyInput} onChange={(e) => setKeyInput(e.target.value)} />
+              <div className="modal-actions"><button className="btn btn-primary" type="submit">Enter</button></div>
+            </form>
+            {error && <div className="error">{error}</div>}
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -259,6 +261,7 @@ export default function App() {
               onOpen={setOpenTaskId}
               onToggleCheck={handleToggleCheck}
               onAddCard={(colId) => setAddingTo(colId)}
+              onMoveDone={(id, x, y) => { api("moveTask", { id, column: "done" }); smallCelebrate(x, y); }}
             />
           ))}
         </div>
