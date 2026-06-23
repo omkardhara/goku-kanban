@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Power-Up Board — Preview</title>
+<style>
+:root{
+  --bg:#070b18;--bg2:#0d1430;--panel:rgba(18,26,54,.72);--panel-solid:#121a36;
+  --line:rgba(120,150,220,.16);--text:#eaf0ff;--muted:#9fb0d8;--orange:#ff9b21;
+  --orange-deep:#ff6a00;--gold:#ffd83d;--ki:#34d6ff;--green:#54e07a;--red:#ff5c6c;--purple:#b06bff;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100vh;color:var(--text);
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  background:
+   radial-gradient(1100px 600px at 80% -10%,rgba(255,106,0,.12),transparent 60%),
+   radial-gradient(900px 600px at 10% 110%,rgba(10,132,255,.14),transparent 60%),
+   linear-gradient(180deg,var(--bg2),var(--bg));background-attachment:fixed;}
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.6;background-image:
+  radial-gradient(1px 1px at 20% 30%,#fff9,transparent),
+  radial-gradient(1px 1px at 70% 60%,#fff8,transparent),
+  radial-gradient(1px 1px at 40% 80%,#fff9,transparent),
+  radial-gradient(1px 1px at 90% 20%,#fff8,transparent),
+  radial-gradient(1px 1px at 55% 15%,#fff6,transparent);}
+.app{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:18px 20px 80px}
+.banner{font-size:12px;color:var(--muted);text-align:center;margin-bottom:12px}
+.hero{display:flex;gap:16px;align-items:center;background:var(--panel);border:1px solid var(--line);
+  border-radius:18px;padding:14px 18px;box-shadow:var(--shadow);margin-bottom:18px}
+.hero-meta{flex:1;min-width:0}
+.title{font-size:22px;font-weight:800;margin:0 0 2px;background:linear-gradient(90deg,var(--gold),var(--orange));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.tier-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange)}
+.powerline{margin-top:10px}
+.power-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:5px}
+.power-num{font-variant-numeric:tabular-nums;font-weight:800;color:var(--gold)}
+.bar{height:12px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid var(--line)}
+.bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--ki),var(--gold),var(--orange));
+  background-size:200% 100%;transition:width .7s cubic-bezier(.2,.9,.2,1);animation:barflow 3s linear infinite;
+  box-shadow:0 0 14px rgba(255,216,61,.5)}
+@keyframes barflow{0%{background-position:0 0}100%{background-position:200% 0}}
+.stat-row{display:flex;gap:14px;margin-top:10px;font-size:12px;color:var(--muted)}
+.stat-row b{color:var(--text)}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.board{grid-template-columns:1fr}}
+.column{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px;min-height:160px;box-shadow:var(--shadow);transition:.15s}
+.column.dragover{border-color:var(--orange);background:rgba(255,155,33,.08)}
+.col-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:0 4px}
+.col-title{font-weight:800;font-size:14px}.col-done .col-title{color:var(--gold)}
+.col-count{font-size:12px;color:var(--muted);background:rgba(255,255,255,.06);border-radius:999px;padding:2px 9px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid var(--line);
+  border-left:4px solid var(--muted);border-radius:12px;padding:11px 12px;margin-bottom:10px;cursor:grab;transition:.12s;position:relative}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.card.dragging{opacity:.45}
+.card.prio-high{border-left-color:var(--red)}.card.prio-med{border-left-color:var(--orange)}.card.prio-low{border-left-color:var(--ki)}
+.card.is-done{border-left-color:var(--green)}.card.is-done .card-title{text-decoration:line-through;color:var(--muted)}
+.card-top{display:flex;gap:8px;align-items:flex-start}
+.card-title{font-weight:600;font-size:14px;line-height:1.35;flex:1;word-break:break-word}
+.card-del{opacity:0;background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;transition:.15s}
+.card:hover .card-del{opacity:1}.card-del:hover{color:var(--red)}
+.flags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.flag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.08);color:var(--muted)}
+.flag.work{background:rgba(52,214,255,.16);color:var(--ki)}
+.flag.personal{background:rgba(176,107,255,.18);color:var(--purple)}
+.flag.urgent{background:rgba(255,92,108,.18);color:var(--red)}
+.flag.info{background:rgba(255,216,61,.16);color:var(--gold)}
+.checklist{margin-top:9px;display:flex;flex-direction:column;gap:5px}
+.check{display:flex;gap:8px;align-items:center;font-size:12.5px;cursor:pointer}
+.check input{accent-color:var(--orange);width:15px;height:15px}
+.check.done span{text-decoration:line-through;color:var(--muted)}
+.check-progress{height:5px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:6px}
+.check-progress>div{height:100%;background:linear-gradient(90deg,var(--ki),var(--gold));transition:width .4s}
+.card-meta{display:flex;gap:12px;align-items:center;margin-top:9px;font-size:11.5px;color:var(--muted)}
+.week-tag{margin-left:auto;opacity:.7}
+.add-card-btn{width:100%;border:1px dashed var(--line);background:transparent;color:var(--muted);border-radius:10px;padding:9px;cursor:pointer;font-size:13px;font-weight:600}
+.add-card-btn:hover{color:var(--text);border-color:var(--orange)}
+.fighter-wrap{position:relative;width:132px;height:150px;flex:0 0 auto;display:grid;place-items:center}
+.fighter-svg{width:132px;height:150px;overflow:visible}
+.aura{transform-origin:50% 60%;animation:aura 1.4s ease-in-out infinite alternate}
+@keyframes aura{0%{transform:scale(.98);opacity:.75}100%{transform:scale(1.06);opacity:1}}
+.float{animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.bolt{animation:bolt .9s steps(2) infinite}@keyframes bolt{0%,100%{opacity:0}50%{opacity:.9}}
+.shake{animation:shake .5s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes shake{10%,90%{transform:translate3d(-1px,0,0)}20%,80%{transform:translate3d(2px,0,0)}30%,50%,70%{transform:translate3d(-4px,0,0)}40%,60%{transform:translate3d(4px,0,0)}}
+.flash{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:0;
+  background:radial-gradient(circle at 50% 55%,rgba(255,236,150,.9),rgba(255,160,40,.35) 40%,transparent 70%);animation:flash .7s ease-out forwards}
+@keyframes flash{0%{opacity:0}18%{opacity:1}100%{opacity:0}}
+.toast{position:fixed;left:50%;top:22%;transform:translateX(-50%);z-index:61;pointer-events:none;font-weight:900;
+  font-size:30px;text-align:center;color:var(--gold);text-shadow:0 0 18px rgba(255,180,40,.9),0 2px 0 #6b3b00;opacity:0;animation:toast 1.8s ease-out forwards}
+.toast small{display:block;font-size:14px;color:var(--orange);letter-spacing:3px}
+@keyframes toast{0%{opacity:0;transform:translateX(-50%) scale(.6)}15%{opacity:1;transform:translateX(-50%) scale(1.1)}30%{transform:translateX(-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(-20px)}}
+.burst{position:fixed;pointer-events:none;z-index:59}
+.spark{position:absolute;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--orange);animation:spark .9s ease-out forwards}
+@keyframes spark{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="app" id="app">
+  <div class="banner">Local preview — in-memory only. The real app syncs across devices and refills weekly. ✕ closes a card, drag cards between columns, tick checklist items.</div>
+  <div class="hero">
+    <div class="fighter-wrap" id="fighter"></div>
+    <div class="hero-meta">
+      <div class="title">⚡ Power-Up Board</div>
+      <div class="tier-name" id="tierName">Base Form</div>
+      <div class="powerline">
+        <div class="power-label"><span>Power Level</span><span class="power-num" id="power">0</span></div>
+        <div class="bar"><div class="bar-fill" id="barFill" style="width:0%"></div></div>
+      </div>
+      <div class="stat-row" id="stats"></div>
+    </div>
+  </div>
+  <div class="board" id="board"></div>
+</div>
+<script>
+const TIERS=[
+ {name:"Base Form",hair:"#1a1a22",hair2:"#3a3a48",aura:"#7fd3ff",auraOp:0,bolt:false,th:0},
+ {name:"Ki Awakened",hair:"#241a16",hair2:"#4a2f22",aura:"#ff5c3c",auraOp:.5,bolt:false,th:.2},
+ {name:"Super Saiyan",hair:"#ffd83d",hair2:"#ffb01f",aura:"#ffd040",auraOp:.7,bolt:false,th:.4},
+ {name:"Super Saiyan 2",hair:"#ffe24f",hair2:"#ffbe26",aura:"#ffe066",auraOp:.85,bolt:true,th:.6},
+ {name:"Super Saiyan 3",hair:"#ffe24f",hair2:"#f5a800",aura:"#fff0a0",auraOp:1,bolt:true,th:.8},
+ {name:"Ultra Instinct",hair:"#46e0ff",hair2:"#0a9cff",aura:"#7af0ff",auraOp:1,bolt:true,th:1},
+];
+function tierFor(r){let i=0;for(let k=0;k<TIERS.length;k++)if(r>=TIERS[k].th)i=k;if(r<1&&i===TIERS.length-1)i=TIERS.length-2;return i;}
+function fighterSVG(tier){const t=TIERS[tier];const aura=t.auraOp>0?`<g class="aura" style="opacity:${t.auraOp}"><path d="M66 6 C90 30,116 44,104 84 C122 96,110 132,66 142 C22 132,10 96,28 84 C16 44,42 30,66 6 Z" fill="url(#auraGrad)"/></g>`:"";
+const bolts=t.bolt?`<g class="bolt" stroke="${t.aura}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M24 60 L18 74 L26 72 L20 90"/><path d="M108 58 L114 72 L106 70 L112 88"/></g>`:"";
+return `<svg class="fighter-svg" viewBox="0 0 132 150"><defs>
+<radialGradient id="auraGrad" cx="50%" cy="58%" r="55%"><stop offset="0%" stop-color="${t.aura}" stop-opacity=".9"/><stop offset="55%" stop-color="${t.aura}" stop-opacity=".35"/><stop offset="100%" stop-color="${t.aura}" stop-opacity="0"/></radialGradient>
+<linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${t.hair}"/><stop offset="100%" stop-color="${t.hair2}"/></linearGradient>
+<linearGradient id="giGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff9b21"/><stop offset="100%" stop-color="#e85d00"/></linearGradient></defs>
+${aura}<g class="float">
+<path d="M66 20 L52 -2 L58 22 L40 6 L50 26 L30 20 L48 34 L82 34 L84 20 L102 20 L84 26 L94 6 L76 22 L82 -2 Z" fill="url(#hairGrad)" opacity=".9"/>
+<path d="M46 78 C46 70,86 70,86 78 L92 118 C92 126,40 126,40 118 Z" fill="url(#giGrad)" stroke="#7a2f00" stroke-width="1.2"/>
+<path d="M58 73 L66 92 L74 73 Z" fill="#1670c8"/><rect x="42" y="112" width="48" height="9" rx="3" fill="#1670c8"/>
+<path d="M46 80 C30 86,26 104,30 116 L40 112 C38 102,42 90,50 88 Z" fill="url(#giGrad)" stroke="#7a2f00" stroke-width="1"/>
+<path d="M86 80 C102 86,106 104,102 116 L92 112 C94 102,90 90,82 88 Z" fill="url(#giGrad)" stroke="#7a2f00" stroke-width="1"/>
+<circle cx="30" cy="118" r="7" fill="#f2c79a"/><circle cx="102" cy="118" r="7" fill="#f2c79a"/>
+<rect x="24" y="110" width="13" height="5" rx="2" fill="#1670c8"/><rect x="95" y="110" width="13" height="5" rx="2" fill="#1670c8"/>
+<rect x="60" y="64" width="12" height="10" rx="3" fill="#f2c79a"/><ellipse cx="66" cy="52" rx="17" ry="18" fill="#f7d3a8"/>
+<ellipse cx="59" cy="52" rx="2.4" ry="3.2" fill="#23314a"/><ellipse cx="73" cy="52" rx="2.4" ry="3.2" fill="#23314a"/>
+<path d="M55 46 L63 48 M77 46 L69 48" stroke="#5a3a1d" stroke-width="2" stroke-linecap="round"/>
+<path d="M61 60 Q66 63 71 60" stroke="#7a4a26" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<path d="M48 50 C44 32,50 22,56 30 L54 14 L62 28 L64 10 L70 28 L72 12 L78 30 C84 22,90 34,84 50 C80 40,74 38,66 40 C58 38,52 40,48 50 Z" fill="url(#hairGrad)" stroke="rgba(0,0,0,.15)" stroke-width=".6"/>
+${bolts}</g></svg>`;}
+
+const COLUMNS=[{id:"todo",title:"This Week"},{id:"doing",title:"In Progress"},{id:"done",title:"Done"}];
+let tasks=[
+ {id:"a",title:"Welcome — drag me to Done to power up",column:"todo",flags:["info"],priority:"low",week:"W26",
+  checklist:[{id:"a1",text:"Tick a checklist item to charge ki",done:false},{id:"a2",text:"Add your own card below",done:false}]},
+ {id:"b",title:"Clear this week's follow-ups",column:"todo",flags:["work"],priority:"high",due:"Jun 27",checklist:[]},
+ {id:"c",title:"Finish the deck for review",column:"doing",flags:["work"],priority:"med",
+  checklist:[{id:"c1",text:"Draft outline",done:true},{id:"c2",text:"Add charts",done:false}]},
+ {id:"d",title:"Send Monday status update",column:"done",flags:["work"],priority:"low",checklist:[]},
+];
+let prevTier=0,prevPower=0,displayPower=0,inited=false,uid=100;
+
+function stats(){let dc=0,ct=0,cd=0;for(const t of tasks){if(t.column==="done")dc++;for(const c of t.checklist||[]){ct++;if(c.done)cd++;}}
+ const tu=tasks.length+ct,cu=dc+cd;return{total:tasks.length,doneCards:dc,checkTotal:ct,checkDone:cd,ratio:tu?cu/tu:0,units:cu};}
+function power(s){return Math.round(s.units*9000+s.ratio*1500);}
+
+function burst(x,y,n=24){const c=document.createElement("div");c.className="burst";document.body.appendChild(c);
+ const cols=["#ffd83d","#ff9b21","#ff6a00","#34d6ff"];
+ for(let i=0;i<n;i++){const s=document.createElement("div");s.className="spark";const a=Math.PI*2*i/n+Math.random()*.5;const d=60+Math.random()*90;
+  s.style.left=x+"px";s.style.top=y+"px";s.style.background=cols[i%cols.length];s.style.setProperty("--dx",Math.cos(a)*d+"px");s.style.setProperty("--dy",Math.sin(a)*d+"px");s.style.animationDelay=Math.random()*.08+"s";c.appendChild(s);}
+ setTimeout(()=>c.remove(),1100);}
+function shake(){const a=document.getElementById("app");a.classList.remove("shake");void a.offsetWidth;a.classList.add("shake");setTimeout(()=>a.classList.remove("shake"),600);}
+function toast(big,sub){const el=document.createElement("div");el.className="toast";el.innerHTML=big+"<small>"+sub+"</small>";document.body.appendChild(el);setTimeout(()=>el.remove(),1900);}
+function bigCelebrate(tier){const f=document.createElement("div");f.className="flash";document.body.appendChild(f);setTimeout(()=>f.remove(),750);
+ shake();toast(TIERS[tier].name+"!","POWER UP");const w=document.getElementById("fighter").getBoundingClientRect();burst(w.left+w.width/2,w.top+w.height/2,36);}
+
+function countPower(target){const start=displayPower,diff=target-start;if(!diff){document.getElementById("power").textContent=target.toLocaleString();return;}
+ const t0=performance.now();(function step(now){const p=Math.min(1,(now-t0)/700);const e=1-Math.pow(1-p,3);displayPower=Math.round(start+diff*e);
+ document.getElementById("power").textContent=displayPower.toLocaleString();if(p<1)requestAnimationFrame(step);})(performance.now());}
+
+function cardHTML(t){const done=t.column==="done";const cl=t.checklist||[];const dn=cl.filter(c=>c.done).length;const pct=cl.length?Math.round(dn/cl.length*100):0;
+ const flags=(t.flags||[]).map(f=>`<span class="flag ${f}">${f}</span>`).join("");
+ const checks=cl.map(c=>`<label class="check ${c.done?'done':''}" data-task="${t.id}" data-item="${c.id}"><input type="checkbox" ${c.done?'checked':''}><span>${c.text}</span></label>`).join("");
+ const prog=cl.length?`<div class="check-progress"><div style="width:${pct}%"></div></div>`:"";
+ const meta=[t.due?`<span>📅 ${t.due}</span>`:"",cl.length?`<span>${dn}/${cl.length}</span>`:"",t.week?`<span class="week-tag">${t.week}</span>`:""].join("");
+ return `<div class="card ${done?'is-done':''} ${t.priority?'prio-'+t.priority:''}" draggable="true" data-id="${t.id}">
+  <div class="card-top"><div class="card-title">${t.title}</div><button class="card-del" data-del="${t.id}" title="Delete">×</button></div>
+  ${flags?`<div class="flags">${flags}</div>`:""}
+  ${cl.length?`<div class="checklist">${checks}</div>${prog}`:""}
+  ${meta?`<div class="card-meta">${meta}</div>`:""}
+ </div>`;}
+
+function render(){
+ const s=stats(),tier=tierFor(s.ratio),pw=power(s);
+ document.getElementById("fighter").innerHTML=fighterSVG(tier);
+ document.getElementById("tierName").textContent=TIERS[tier].name;
+ document.getElementById("barFill").style.width=Math.round(s.ratio*100)+"%";
+ document.getElementById("stats").innerHTML=`<span><b>${s.doneCards}</b>/${s.total} cards</span><span><b>${s.checkDone}</b>/${s.checkTotal} checklist</span><span><b>${Math.round(s.ratio*100)}%</b> charged</span>`;
+ const board=document.getElementById("board");
+ board.innerHTML=COLUMNS.map(col=>{const list=tasks.filter(t=>t.column===col.id);
+  return `<div class="column ${col.id==='done'?'col-done':''}" data-col="${col.id}">
+   <div class="col-head"><span class="col-title">${col.title}</span><span class="col-count">${list.length}</span></div>
+   ${list.map(cardHTML).join("")}
+   <button class="add-card-btn" data-add="${col.id}">+ Add a card</button></div>`;}).join("");
+ wire();
+ if(inited){if(tier>prevTier)bigCelebrate(tier);if(prevPower<9000&&pw>=9000)toast("IT'S OVER 9000!","POWER UNLEASHED");}else inited=true;
+ prevTier=tier;prevPower=pw;countPower(pw);
+}
+
+let dragId=null;
+function wire(){
+ document.querySelectorAll(".card").forEach(el=>{
+  el.addEventListener("dragstart",e=>{dragId=el.dataset.id;el.classList.add("dragging");});
+  el.addEventListener("dragend",()=>el.classList.remove("dragging"));
+ });
+ document.querySelectorAll(".column").forEach(col=>{
+  col.addEventListener("dragover",e=>{e.preventDefault();col.classList.add("dragover");});
+  col.addEventListener("dragleave",e=>{if(!col.contains(e.relatedTarget))col.classList.remove("dragover");});
+  col.addEventListener("drop",e=>{e.preventDefault();col.classList.remove("dragover");
+   const to=col.dataset.col,t=tasks.find(x=>x.id===dragId);if(t&&t.column!==to){const wasDone=t.column==="done";t.column=to;render();
+    if(to==="done"&&!wasDone){shake();burst(e.clientX,e.clientY,24);}}});
+ });
+ document.querySelectorAll(".check").forEach(c=>c.addEventListener("click",e=>{e.preventDefault();
+   const t=tasks.find(x=>x.id===c.dataset.task);const it=t.checklist.find(i=>i.id===c.dataset.item);
+   const allBefore=t.checklist.every(i=>i.done);it.done=!it.done;const allAfter=t.checklist.length&&t.checklist.every(i=>i.done);
+   render();if(allAfter&&!allBefore){shake();burst(window.innerWidth/2,window.innerHeight/3,20);}}));
+ document.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",()=>{tasks=tasks.filter(t=>t.id!==b.dataset.del);render();}));
+ document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{
+   const title=prompt("New card title:");if(title&&title.trim()){tasks.push({id:"t"+(uid++),title:title.trim(),column:b.dataset.add,flags:[],checklist:[]});render();}}));
+}
+render();
+</script>
+</body>
+</html>
