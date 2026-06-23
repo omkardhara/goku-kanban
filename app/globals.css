@@ -264,6 +264,10 @@ html, body {
 .flag.personal { background: rgba(176, 107, 255, 0.18); color: var(--purple); }
 .flag.urgent { background: rgba(255, 92, 108, 0.18); color: var(--red); }
 .flag.info { background: rgba(255, 216, 61, 0.16); color: var(--gold); }
+.flag.bms { background: rgba(52, 214, 255, 0.16); color: var(--ki); }
+.flag.client { background: rgba(176, 107, 255, 0.18); color: var(--purple); }
+.flag.payments { background: rgba(84, 224, 122, 0.16); color: var(--green); }
+.flag.misc { background: rgba(255, 216, 61, 0.16); color: var(--gold); }
 
 .card-meta {
   display: flex;
@@ -328,17 +332,17 @@ html, body {
 
 .card-done-btn {
   margin-left: auto;
-  background: rgba(84, 224, 122, 0.12);
-  border: 1px solid rgba(84, 224, 122, 0.3);
-  color: var(--green);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.25);
   border-radius: 6px;
   padding: 2px 8px;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: all 0.15s ease;
 }
-.card-done-btn:hover { background: rgba(84, 224, 122, 0.25); }
+.card-done-btn:hover { background: rgba(84, 224, 122, 0.12); border-color: rgba(84, 224, 122, 0.35); color: var(--green); }
 
 /* ---------- modal ---------- */
 .modal-back {
@@ -539,7 +543,11 @@ html, body {
 }
 
 /* nav tabs */
-.nav { display: flex; gap: 8px; margin: 0 0 16px; flex-wrap: wrap; }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 16px; flex-wrap: wrap; }
+.nav-views { display: flex; gap: 8px; flex-wrap: wrap; }
+.nav-links { display: flex; gap: 8px; flex-shrink: 0; }
+.nav-link { padding: 7px 14px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); color: var(--muted); font-weight: 600; font-size: 12px; text-decoration: none; letter-spacing: 0.3px; transition: background 0.2s ease, color 0.2s ease; }
+.nav-link:hover { background: rgba(255,255,255,0.1); color: var(--text); }
 .nav-tab {
   padding: 8px 16px; border-radius: 10px; border: 1px solid var(--line);
   background: rgba(255,255,255,0.05); color: var(--text); font-weight: 700;
@@ -587,7 +595,7 @@ html, body {
 .modal-lg { max-width: 560px; max-height: 88vh; overflow-y: auto; position: relative; }
 .modal-close { position: absolute; top: 10px; right: 12px; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; }
 .modal-close:hover { color: var(--text); }
-.title-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--line); color: var(--text); font-size: 18px; font-weight: 700; padding: 4px 2px 8px; margin-bottom: 14px; }
+.title-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--line); color: var(--text); font-size: 18px; font-weight: 700; padding: 4px 2px 8px; margin-bottom: 14px; resize: none; line-height: 1.35; font-family: inherit; overflow: hidden; }
 .title-input:focus { outline: none; border-color: var(--orange); }
 .row-controls { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
 .links { display: flex; flex-direction: column; gap: 6px; }

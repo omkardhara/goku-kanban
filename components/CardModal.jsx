@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const FLAGS = ["work", "personal", "urgent", "info"];
+const FLAGS = ["bms", "client", "payments", "misc"];
 const PRIOS = [
   { id: "high", label: "High" },
   { id: "med", label: "Medium" },
@@ -36,6 +36,12 @@ export default function CardModal({
     setTitle(task.title);
     setNotes(task.notes || "");
   }, [task.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const handler = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [onClose]);
 
   const checks = task.checklist || [];
   const links = task.links || [];
@@ -78,11 +84,12 @@ export default function CardModal({
       <div className="modal modal-lg" onMouseDown={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
 
-        <input
+        <textarea
           className="title-input"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           onBlur={saveTitle}
+          rows={2}
         />
 
         <div className="row-controls">

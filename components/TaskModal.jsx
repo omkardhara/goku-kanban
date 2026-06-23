@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const FLAGS = ["work", "personal", "urgent", "info"];
+const FLAGS = ["bms", "client", "payments", "misc"];
 const PRIOS = [
   { id: "high", label: "High" },
   { id: "med", label: "Medium" },

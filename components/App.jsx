@@ -237,13 +237,20 @@ export default function App() {
       </div>
 
       <div className="nav">
-        {VIEWS.map((v) => (
-          <button key={v.id} className={`nav-tab ${view === v.id ? "on" : ""}`} onClick={() => setView(v.id)}>
-            {v.label}
-            {v.id === "payments" && stats?.payments ? <span className="nav-badge">{stats.payments}</span> : null}
-            {v.id === "calendar" && stats?.events ? <span className="nav-badge">{stats.events}</span> : null}
-          </button>
-        ))}
+        <div className="nav-views">
+          {VIEWS.map((v) => (
+            <button key={v.id} className={`nav-tab ${view === v.id ? "on" : ""}`} onClick={() => setView(v.id)}>
+              {v.label}
+              {v.id === "payments" && stats?.payments ? <span className="nav-badge">{stats.payments}</span> : null}
+              {v.id === "calendar" && stats?.events ? <span className="nav-badge">{stats.events}</span> : null}
+            </button>
+          ))}
+        </div>
+        <div className="nav-links">
+          <a className="nav-link" href="https://script.google.com/a/macros/bookmyshow.com/s/AKfycbwQBgMFLV6Nhi0bAGyD2WKXdTlvJs67VVm4xDF9ZAIhutN5HTbRxN3yWtveSVCMbiR0pw/exec" target="_blank" rel="noreferrer">Dashboard</a>
+          <a className="nav-link" href="https://docs.google.com/spreadsheets/d/1V7dCI0-5ZqW0lRd42UDW_xfo5sNQO8UwyYlTffOlyPg/edit?usp=sharing" target="_blank" rel="noreferrer">2026-27</a>
+          <a className="nav-link" href="https://docs.google.com/spreadsheets/d/1Y7NmUMgWrGi2rVGoixkkNkQKMuhT1F-OZERol1UTfrE/edit?usp=sharing" target="_blank" rel="noreferrer">2025-26</a>
+        </div>
       </div>
 
       {loading && !board ? (
