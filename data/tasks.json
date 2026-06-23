@@ -4,55 +4,37 @@
     {
       "id": "wk_2026-W26_welcome",
       "title": "Welcome to your power-up board",
-      "notes": "New tasks land here every week from your weekly summary. Drag a card to 'Done' to power up. You can also add cards manually with the + button.",
+      "notes": "New tasks land here every week. Click a card to add a description, links and a checklist. Drag to Done to power up.",
       "column": "todo",
       "source": "weekly",
       "week": "2026-W26",
       "flags": ["info"],
       "priority": "low",
       "checklist": [
-        { "id": "c_w1", "text": "Drag this card to Done to see the transformation", "done": false },
-        { "id": "c_w2", "text": "Add your own card with the + button", "done": false },
-        { "id": "c_w3", "text": "Tick a checklist item to charge ki", "done": false }
+        { "id": "c_w1", "text": "Click me to open the card detail", "done": false },
+        { "id": "c_w2", "text": "Drag me to Done to transform", "done": false }
       ]
-    },
+    }
+  ],
+  "payments": [
     {
-      "id": "wk_2026-W26_sample-followups",
-      "title": "Clear this week's follow-ups",
-      "notes": "Example of a task carried in from the weekly summary.",
-      "column": "todo",
-      "source": "weekly",
-      "week": "2026-W26",
-      "flags": ["work"],
-      "priority": "high",
-      "dueDate": "2026-06-27",
-      "checklist": []
-    },
+      "brand": "Example brand",
+      "ptype": "Awaiting PO",
+      "lastChased": "—",
+      "owner": "You",
+      "action": "Payments synced here from your weekly run.",
+      "status": "pending"
+    }
+  ],
+  "events": [
     {
-      "id": "wk_2026-W26_sample-doing",
-      "title": "Finish the deck for review",
-      "notes": "",
-      "column": "doing",
-      "source": "weekly",
-      "week": "2026-W26",
-      "flags": ["work"],
-      "priority": "med",
-      "checklist": [
-        { "id": "c_d1", "text": "Draft outline", "done": true },
-        { "id": "c_d2", "text": "Add charts", "done": false }
-      ]
-    },
-    {
-      "id": "wk_2026-W26_sample-done",
-      "title": "Send Monday status update",
-      "notes": "",
-      "column": "done",
-      "source": "weekly",
-      "week": "2026-W26",
-      "flags": ["work"],
-      "priority": "low",
-      "completedAt": "2026-06-22T09:00:00.000Z",
-      "checklist": []
+      "date": "2026-06-25",
+      "day": "Thursday, June 25",
+      "time": "12:00 PM",
+      "title": "Example meeting",
+      "location": "Your meetings sync in here from the weekly run",
+      "attendees": "",
+      "bring": ""
     }
   ]
 }

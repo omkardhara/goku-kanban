@@ -3,6 +3,7 @@ import { loadBoard, saveBoard } from "../../../lib/store";
 import { checkKey } from "../../../lib/auth";
 import {
   bootstrapBoard,
+  normalize,
   boardStats,
   addTask,
   updateTask,
@@ -10,8 +11,17 @@ import {
   deleteTask,
   toggleChecklistItem,
   addChecklistItem,
+  deleteChecklistItem,
+  addLink,
+  deleteLink,
+  setPayments,
+  addPayment,
+  updatePayment,
+  deletePayment,
+  setEvents,
+  addEvent,
+  deleteEvent,
   mergeWeekly,
-  COLUMNS,
 } from "../../../lib/board";
 
 export const dynamic = "force-dynamic";
@@ -22,8 +32,7 @@ async function getOrBootstrap() {
     board = bootstrapBoard();
     await saveBoard(board);
   }
-  if (!board.columns) board.columns = COLUMNS;
-  return board;
+  return normalize(board);
 }
 
 function withStats(board) {
@@ -72,6 +81,36 @@ export async function POST(request) {
     case "addChecklistItem":
       board = addChecklistItem(board, payload.taskId, payload.text);
       break;
+    case "deleteChecklistItem":
+      board = deleteChecklistItem(board, payload.taskId, payload.itemId);
+      break;
+    case "addLink":
+      board = addLink(board, payload.taskId, payload.label, payload.url);
+      break;
+    case "deleteLink":
+      board = deleteLink(board, payload.taskId, payload.linkId);
+      break;
+    case "setPayments":
+      board = setPayments(board, payload.payments || []);
+      break;
+    case "addPayment":
+      board = addPayment(board, payload);
+      break;
+    case "updatePayment":
+      board = updatePayment(board, payload.id, payload.patch || {});
+      break;
+    case "deletePayment":
+      board = deletePayment(board, payload.id);
+      break;
+    case "setEvents":
+      board = setEvents(board, payload.events || []);
+      break;
+    case "addEvent":
+      board = addEvent(board, payload);
+      break;
+    case "deleteEvent":
+      board = deleteEvent(board, payload.id);
+      break;
     case "mergeWeekly": {
       const res = mergeWeekly(board, payload.week, payload.tasks || []);
       board = res.board;
@@ -79,8 +118,7 @@ export async function POST(request) {
       break;
     }
     case "replaceBoard":
-      // full overwrite (used rarely, e.g. restore from backup)
-      if (payload.board) board = payload.board;
+      if (payload.board) board = normalize(payload.board);
       break;
     default:
       return NextResponse.json({ error: "unknown action" }, { status: 400 });

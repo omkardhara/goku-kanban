@@ -7,9 +7,8 @@ export default function Column({
   column,
   tasks,
   onDropTask,
+  onOpen,
   onToggleCheck,
-  onAddCheck,
-  onDelete,
   onAddCard,
   onDragStart,
   onDragEnd,
@@ -26,7 +25,6 @@ export default function Column({
         if (!over) setOver(true);
       }}
       onDragLeave={(e) => {
-        // only clear when leaving the column, not entering a child
         if (!e.currentTarget.contains(e.relatedTarget)) setOver(false);
       }}
       onDrop={(e) => {
@@ -45,17 +43,14 @@ export default function Column({
         <Card
           key={t.id}
           task={t}
+          onOpen={onOpen}
           onToggleCheck={onToggleCheck}
-          onAddCheck={onAddCheck}
-          onDelete={onDelete}
           onDragStart={onDragStart}
           onDragEnd={onDragEnd}
         />
       ))}
 
-      <button className="add-card-btn" onClick={() => onAddCard(column.id)}>
-        + Add a card
-      </button>
+      <button className="add-card-btn" onClick={() => onAddCard(column.id)}>+ Add a card</button>
     </div>
   );
 }

@@ -1,37 +1,20 @@
 #!/usr/bin/env node
 /**
  * Weekly updater — run AFTER your weekly summary is generated.
- *
- * What it does, in order:
- *   1. Reads the weekly-summary text (from --file <path> or stdin).
- *   2. Parses it into task cards.
- *   3. Reads the LIVE board from your deployed site (the source of truth —
- *      includes manual cards, moves, and completions you made this week).
- *   4. Merges in ONLY the tasks that aren't already on the live board.
- *   5. Pushes that merge to the live board (instant update, no redeploy needed).
- *   6. Also appends the new tasks to data/tasks.json and git-commits, so the
- *      repo stays a versioned backup and Vercel redeploys.
+ * Reads the live board first, merges only new MASTER TO-DO tasks, syncs payments,
+ * writes the repo backup, and pushes. See README for the full flow.
  *
  * Usage:
  *   node scripts/weekly-update.mjs --file ./summary.txt
  *   cat summary.txt | node scripts/weekly-update.mjs
- *
- * Flags:
- *   --file <path>   read summary text from a file (otherwise stdin)
- *   --no-git        skip the git commit/push step
- *   --no-live       skip writing to the live board (only update repo)
- *   --force         re-import even if this week was already imported
- *   --dry           parse and print, change nothing
- *
- * Env (see .env.example):
- *   BOARD_URL   e.g. https://goku-kanban.vercel.app
- *   BOARD_KEY   the same access key the website uses
+ * Flags: --file <path>  --no-git  --no-live  --force  --dry
+ * Env: BOARD_URL, BOARD_KEY
  */
 
 import fs from "node:fs/promises";
 import path from "node:path";
 import { execSync } from "node:child_process";
-import { parseSummary } from "../lib/parseDoc.mjs";
+import { parseSummary, parsePayments } from "../lib/parseDoc.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const TASKS_FILE = path.join(ROOT, "data", "tasks.json");
@@ -58,7 +41,6 @@ function isoWeek(date = new Date()) {
 async function readInput() {
   const file = valOf("--file");
   if (file) return fs.readFile(file, "utf8");
-  // stdin
   const chunks = [];
   for await (const c of process.stdin) chunks.push(c);
   return Buffer.concat(chunks).toString("utf8");
@@ -68,23 +50,24 @@ async function getLiveBoard() {
   const url = process.env.BOARD_URL;
   const key = process.env.BOARD_KEY || "";
   if (!url) return null;
-  const res = await fetch(`${url.replace(/\/$/, "")}/api/state`, {
-    headers: { "x-board-key": key },
-  });
+  const res = await fetch(`${url.replace(/\/$/, "")}/api/state`, { headers: { "x-board-key": key } });
   if (!res.ok) throw new Error(`Live board GET failed: ${res.status} ${await res.text()}`);
   return res.json();
 }
 
-async function mergeLive(week, tasks) {
+async function postLive(action, payload) {
   const url = process.env.BOARD_URL;
   const key = process.env.BOARD_KEY || "";
   const res = await fetch(`${url.replace(/\/$/, "")}/api/state`, {
     method: "POST",
     headers: { "Content-Type": "application/json", "x-board-key": key },
-    body: JSON.stringify({ action: "mergeWeekly", payload: { week, tasks } }),
+    body: JSON.stringify({ action, payload }),
   });
-  if (!res.ok) throw new Error(`Live merge failed: ${res.status} ${await res.text()}`);
+  if (!res.ok) throw new Error(`Live ${action} failed: ${res.status} ${await res.text()}`);
   return res.json();
+}
+async function mergeLive(week, tasks) {
+  return postLive("mergeWeekly", { week, tasks });
 }
 
 async function updateRepoTasks(week, newTasks) {
@@ -92,10 +75,9 @@ async function updateRepoTasks(week, newTasks) {
   try {
     data = JSON.parse(await fs.readFile(TASKS_FILE, "utf8"));
   } catch {}
-  const existing = new Set((data.tasks || []).map((t) => t.id));
-  for (const t of newTasks) {
-    if (!existing.has(t.id)) data.tasks.push(t);
-  }
+  if (!Array.isArray(data.tasks)) data.tasks = [];
+  const existing = new Set(data.tasks.map((t) => t.id));
+  for (const t of newTasks) if (!existing.has(t.id)) data.tasks.push(t);
   data.week = week;
   await fs.writeFile(TASKS_FILE, JSON.stringify(data, null, 2) + "\n", "utf8");
 }
@@ -117,22 +99,22 @@ async function main() {
   const text = await readInput();
   const week = isoWeek();
   const parsed = parseSummary(text);
+  const payments = parsePayments(text);
 
-  if (parsed.length === 0) {
-    console.log("No tasks found in the summary. Nothing to do.");
+  if (parsed.length === 0 && payments.length === 0) {
+    console.log("No tasks or payments found in the summary. Nothing to do.");
     return;
   }
 
-  // stable ids so re-runs don't duplicate
   const candidates = parsed.map((t) => ({ ...t, id: `wk_${week}_${slug(t.title)}`, source: "weekly", week }));
 
   if (has("--dry")) {
-    console.log(`Week ${week} — ${candidates.length} parsed task(s):`);
+    console.log(`Week ${week} — ${candidates.length} parsed task(s), ${payments.length} payment(s):`);
     for (const t of candidates) console.log(`  - [${t.column}] ${t.title}${t.dueDate ? ` (due ${t.dueDate})` : ""}`);
+    for (const p of payments) console.log(`  $ ${p.brand} [${p.status}]`);
     return;
   }
 
-  // 1) Read the live board first — it's the most up-to-date truth.
   let live = null;
   if (!has("--no-live")) {
     try {
@@ -142,10 +124,19 @@ async function main() {
     }
   }
 
+  if (live && !has("--no-live") && payments.length) {
+    try {
+      await postLive("setPayments", { payments });
+      console.log(`✓ Payments synced: ${payments.length}.`);
+    } catch (e) {
+      console.warn("⚠ payments sync failed:", e.message);
+    }
+  }
+
   let newTasks = candidates;
   if (live) {
     if (live.weeksImported?.includes(week) && !has("--force")) {
-      console.log(`Week ${week} already imported on the live board. Use --force to re-run.`);
+      console.log(`Week ${week} tasks already imported. (Payments still refreshed.) Use --force to re-add tasks.`);
       return;
     }
     const present = new Set(Object.keys(live.tasks || {}));
@@ -154,17 +145,15 @@ async function main() {
   }
 
   if (newTasks.length === 0) {
-    console.log("Nothing new to add. Live board is already up to date.");
+    console.log("No new tasks to add.");
     return;
   }
 
-  // 2) Push the merge to the live board (instant).
   if (live && !has("--no-live")) {
     const res = await mergeLive(week, newTasks);
     console.log(`✓ Live board updated: +${res.added ?? newTasks.length} cards.`);
   }
 
-  // 3) Update the repo backup + redeploy.
   await updateRepoTasks(week, newTasks);
   console.log(`✓ data/tasks.json updated (+${newTasks.length}).`);
 
@@ -175,7 +164,6 @@ async function main() {
       console.warn("⚠ git push skipped/failed:", e.message);
     }
   }
-
   console.log("Done. ⚡");
 }
 

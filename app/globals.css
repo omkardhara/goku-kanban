@@ -462,8 +462,6 @@ html, body {
   place-items: center;
 }
 .fighter-svg { width: 132px; height: 150px; overflow: visible; }
-.fighter-img { width: 132px; height: 150px; object-fit: contain; position: relative; z-index: 1; }
-.fighter-aura { position: absolute; inset: -20px; border-radius: 50%; pointer-events: none; }
 
 .aura {
   transform-origin: 50% 60%;
@@ -484,3 +482,108 @@ html, body {
 .muted { color: var(--muted); }
 .hint { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .error { color: var(--red); font-size: 13px; margin-top: 8px; }
+
+/* ===================== v2: views, backgrounds, fighter fx ===================== */
+
+/* per-view background scenes */
+.bg { position: fixed; inset: 0; z-index: 0; }
+.bg-svg { width: 100%; height: 100%; display: block; }
+.bg-scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(7,11,24,0.5), rgba(7,11,24,0.84));
+}
+/* To use your OWN image instead, drop a file in /public/backgrounds and point
+   Backgrounds.jsx at it, or set: .bg-board{background:url(/backgrounds/board.jpg) center/cover} */
+
+/* fighter fx */
+.fighter-wrap { width: 140px; height: 160px; }
+.fighter-svg { width: 140px; height: 160px; }
+.ki-field { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.ki {
+  position: absolute; bottom: 16%; width: 6px; height: 6px; border-radius: 50%;
+  opacity: 0; animation: kirise 1.4s ease-in infinite;
+  box-shadow: 0 0 8px currentColor;
+}
+@keyframes kirise {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-96px) scale(0.2); opacity: 0; }
+}
+.flame { transform-origin: center; animation: flame 0.5s ease-in-out infinite alternate; }
+.flame.f2 { animation-delay: 0.15s; }
+.flame.f3 { animation-delay: 0.3s; }
+@keyframes flame {
+  0% { transform: scaleY(0.85) translateY(2px); opacity: 0.7; }
+  100% { transform: scaleY(1.18) translateY(-3px); opacity: 1; }
+}
+.ground-ring { transform-origin: 66px 150px; animation: ring 1.6s ease-in-out infinite alternate; }
+@keyframes ring {
+  0% { transform: scaleX(0.9); opacity: 0.45; }
+  100% { transform: scaleX(1.12); opacity: 0.9; }
+}
+
+/* nav tabs */
+.nav { display: flex; gap: 8px; margin: 0 0 16px; flex-wrap: wrap; }
+.nav-tab {
+  padding: 8px 16px; border-radius: 10px; border: 1px solid var(--line);
+  background: rgba(255,255,255,0.05); color: var(--text); font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px;
+  transition: transform 0.12s ease, background 0.2s ease;
+}
+.nav-tab:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
+.nav-tab.on { background: linear-gradient(180deg, var(--orange), var(--orange-deep)); color: #1a1100; border-color: transparent; }
+.nav-badge { background: rgba(255,255,255,0.14); border-radius: 999px; font-size: 11px; padding: 1px 7px; font-weight: 800; }
+.nav-tab.on .nav-badge { background: rgba(0,0,0,0.22); }
+
+/* view panes */
+.view-pane { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); backdrop-filter: blur(6px); }
+.view-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
+.view-head h2 { margin: 0; font-size: 18px; }
+.closed-head { margin: 18px 0 10px; font-size: 14px; color: var(--muted); }
+
+/* payments */
+.pay-add, .cal-add { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.pay-add .input { flex: 1; min-width: 160px; }
+.cal-add .input { flex: 1; min-width: 130px; }
+.pay-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.pay-card { background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border: 1px solid var(--line); border-left: 4px solid var(--orange); border-radius: 12px; padding: 12px; }
+.pay-card.status-chasing { border-left-color: var(--red); }
+.pay-card.status-pending { border-left-color: var(--orange); }
+.pay-card.status-closed { border-left-color: var(--green); opacity: 0.65; }
+.pay-head { display: flex; justify-content: space-between; align-items: center; }
+.pay-brand { font-weight: 800; font-size: 14px; }
+.pay-type { font-size: 12.5px; color: var(--gold); margin-top: 3px; }
+.pay-action { font-size: 12.5px; margin-top: 6px; line-height: 1.4; color: var(--text); }
+.pay-meta { display: flex; flex-direction: column; gap: 2px; font-size: 11.5px; color: var(--muted); margin-top: 8px; }
+.pay-status { margin-top: 10px; width: 100%; }
+
+/* calendar */
+.cal-days { display: flex; flex-direction: column; gap: 14px; }
+.cal-day-label { font-weight: 800; font-size: 14px; color: var(--gold); margin-bottom: 8px; letter-spacing: 0.3px; }
+.cal-event { background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
+.cal-event-top { display: flex; gap: 10px; align-items: center; }
+.cal-time { font-weight: 700; color: var(--ki); font-size: 12.5px; min-width: 64px; }
+.cal-title { font-weight: 600; flex: 1; }
+.cal-loc, .cal-att, .cal-bring { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.cal-bring { color: var(--text); }
+
+/* card detail modal */
+.modal-lg { max-width: 560px; max-height: 88vh; overflow-y: auto; position: relative; }
+.modal-close { position: absolute; top: 10px; right: 12px; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; line-height: 1; }
+.modal-close:hover { color: var(--text); }
+.title-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--line); color: var(--text); font-size: 18px; font-weight: 700; padding: 4px 2px 8px; margin-bottom: 14px; }
+.title-input:focus { outline: none; border-color: var(--orange); }
+.row-controls { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.links { display: flex; flex-direction: column; gap: 6px; }
+.link-row { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 6px 10px; }
+.link-row a { color: var(--ki); text-decoration: none; font-size: 13px; word-break: break-all; }
+.link-row a:hover { text-decoration: underline; }
+.link-form { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.link-form .input { flex: 1; min-width: 120px; }
+.mini-del { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1; padding: 0 4px; }
+.mini-del:hover { color: var(--red); }
+.btn-danger { background: rgba(255,92,108,0.15); border-color: rgba(255,92,108,0.4); color: var(--red); }
+.btn-danger:hover { background: rgba(255,92,108,0.25); }
+
+/* fighter image mode (your own /public/goku/*.png) */
+.fighter-img { height: 158px; width: auto; max-width: 150px; object-fit: contain; display: block; }
