@@ -208,8 +208,9 @@ export default function App() {
   const openTask = openTaskId && board ? board.tasks[openTaskId] : null;
 
   return (
+    <>
+    <Backgrounds view={view} />
     <div className={`app view-${view}`}>
-      <Backgrounds view={view} />
 
       {flash && <div className="flash" />}
       {toast && <div className="toast" key={toast.id}>{toast.big}<small>{toast.sub}</small></div>}
@@ -285,5 +286,6 @@ export default function App() {
         />
       )}
     </div>
+    </>
   );
 }

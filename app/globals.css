@@ -486,7 +486,7 @@ html, body {
 /* ===================== v2: views, backgrounds, fighter fx ===================== */
 
 /* per-view background scenes */
-.bg { position: fixed; inset: 0; z-index: 0; }
+.bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 .bg-svg { width: 100%; height: 100%; display: block; }
 .bg-scrim {
   position: absolute; inset: 0;
