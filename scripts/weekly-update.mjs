@@ -13,10 +13,11 @@
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
 import { parseSummary, parsePayments } from "../lib/parseDoc.mjs";
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const TASKS_FILE = path.join(ROOT, "data", "tasks.json");
 
 const args = process.argv.slice(2);
