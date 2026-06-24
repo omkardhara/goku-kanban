@@ -7,7 +7,7 @@
  * Usage:
  *   node scripts/weekly-update.mjs --file ./summary.txt
  *   cat summary.txt | node scripts/weekly-update.mjs
- * Flags: --file <path>  --no-git  --no-live  --force  --dry
+ * Flags: --file <path>  --week <2026-W25>  --no-git  --no-live  --force  --dry
  * Env: BOARD_URL, BOARD_KEY
  */
 
@@ -97,9 +97,13 @@ function gitPush(week, count) {
 
 async function main() {
   const text = await readInput();
-  const week = isoWeek();
+  const week = valOf("--week") || isoWeek();
   const parsed = parseSummary(text);
   const payments = parsePayments(text);
+
+  if (!process.env.BOARD_URL) {
+    console.warn("⚠ BOARD_URL not set — live board will not be updated. Set it to your Vercel URL.");
+  }
 
   if (parsed.length === 0 && payments.length === 0) {
     console.log("No tasks or payments found in the summary. Nothing to do.");
@@ -126,8 +130,8 @@ async function main() {
 
   if (live && !has("--no-live") && payments.length) {
     try {
-      await postLive("setPayments", { payments });
-      console.log(`✓ Payments synced: ${payments.length}.`);
+      await postLive("mergePayments", { payments });
+      console.log(`✓ Payments merged: ${payments.length} from doc (existing statuses preserved).`);
     } catch (e) {
       console.warn("⚠ payments sync failed:", e.message);
     }

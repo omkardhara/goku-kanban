@@ -4,7 +4,7 @@ import { checkKey } from "../../../lib/auth";
 import {
   bootstrapBoard, normalize, boardStats, addTask, updateTask, moveTask, deleteTask,
   toggleChecklistItem, addChecklistItem, deleteChecklistItem, addLink, deleteLink,
-  setPayments, addPayment, updatePayment, deletePayment, setEvents, addEvent,
+  setPayments, mergePayments, addPayment, updatePayment, deletePayment, setEvents, addEvent,
   deleteEvent, mergeWeekly,
 } from "../../../lib/board";
 
@@ -42,6 +42,7 @@ export async function POST(request) {
     case "addLink": board = addLink(board, payload.taskId, payload.label, payload.url); break;
     case "deleteLink": board = deleteLink(board, payload.taskId, payload.linkId); break;
     case "setPayments": board = setPayments(board, payload.payments || []); break;
+    case "mergePayments": board = mergePayments(board, payload.payments || []); break;
     case "addPayment": board = addPayment(board, payload); break;
     case "updatePayment": board = updatePayment(board, payload.id, payload.patch || {}); break;
     case "deletePayment": board = deletePayment(board, payload.id); break;
