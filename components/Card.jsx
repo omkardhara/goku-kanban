@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 function fmtDue(d) {
   if (!d) return null;
   try {
@@ -9,7 +11,7 @@ function fmtDue(d) {
   }
 }
 
-export default function Card({ task, onOpen, onToggleCheck, onMoveDone, onDragStart, onDragEnd }) {
+function Card({ task, onOpen, onToggleCheck, onMoveDone, onDragStart, onDragEnd }) {
   const isDone = task.column === "done";
   const checks = task.checklist || [];
   const links = task.links || [];
@@ -76,3 +78,5 @@ export default function Card({ task, onOpen, onToggleCheck, onMoveDone, onDragSt
     </div>
   );
 }
+
+export default memo(Card);

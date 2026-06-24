@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Column from "./Column";
 import Fighter from "./Fighter";
 import TaskModal from "./TaskModal";
@@ -57,10 +57,10 @@ export default function App() {
       burstAt(r.left + r.width / 2, r.top + r.height / 2, { count: 36 });
     }
   }
-  function smallCelebrate(x, y) {
+  const smallCelebrate = useCallback((x, y) => {
     shakeScreen();
     burstAt(x ?? window.innerWidth / 2, y ?? window.innerHeight / 3, { count: 24 });
-  }
+  }, []);
 
   const applyBoard = useCallback((data) => {
     setBoard(data);
@@ -137,22 +137,32 @@ export default function App() {
     // eslint-disable-next-line
   }, [stats]);
 
-  function tasksForColumn(colId) {
-    if (!board) return [];
-    return Object.values(board.tasks)
-      .filter((t) => t.column === colId)
-      .sort((a, b) => (a.order || 0) - (b.order || 0));
-  }
+  const tasksByColumn = useMemo(() => {
+    if (!board) return {};
+    const map = {};
+    for (const t of Object.values(board.tasks)) {
+      if (!map[t.column]) map[t.column] = [];
+      map[t.column].push(t);
+    }
+    for (const col in map) map[col].sort((a, b) => (a.order || 0) - (b.order || 0));
+    return map;
+  }, [board?.tasks]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleMoveDone = useCallback((id, x, y) => {
+    api("moveTask", { id, column: "done" });
+    smallCelebrate(x, y);
+  }, [api, smallCelebrate]);
 
   // task handlers
-  function handleDrop(id, toCol, x, y) {
+  const handleDrop = useCallback((id, toCol, x, y) => {
     const task = board?.tasks[id];
     if (!task || task.column === toCol) return;
     const wasDone = task.column === "done";
     api("moveTask", { id, column: toCol });
     if (toCol === "done" && !wasDone) smallCelebrate(x, y);
-  }
-  function handleToggleCheck(taskId, itemId) {
+  }, [board, api, smallCelebrate]);
+
+  const handleToggleCheck = useCallback((taskId, itemId) => {
     const task = board?.tasks[taskId];
     if (task) {
       const after = (task.checklist || []).map((c) => (c.id === itemId ? { ...c, done: !c.done } : c));
@@ -161,7 +171,7 @@ export default function App() {
       if (allAfter && !allBefore) smallCelebrate();
     }
     api("toggleChecklistItem", { taskId, itemId });
-  }
+  }, [board, api, smallCelebrate]);
   const handleAddCheck = (taskId, text) => api("addChecklistItem", { taskId, text });
   const handleDelCheck = (taskId, itemId) => api("deleteChecklistItem", { taskId, itemId });
   const handleAddLink = (taskId, label, url) => api("addLink", { taskId, label, url });
@@ -263,12 +273,12 @@ export default function App() {
             <Column
               key={col.id}
               column={col}
-              tasks={tasksForColumn(col.id)}
+              tasks={tasksByColumn[col.id] || []}
               onDropTask={handleDrop}
               onOpen={setOpenTaskId}
               onToggleCheck={handleToggleCheck}
-              onAddCard={(colId) => setAddingTo(colId)}
-              onMoveDone={(id, x, y) => { api("moveTask", { id, column: "done" }); smallCelebrate(x, y); }}
+              onAddCard={setAddingTo}
+              onMoveDone={handleMoveDone}
             />
           ))}
         </div>

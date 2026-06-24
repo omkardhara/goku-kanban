@@ -13,7 +13,7 @@ function PaymentCard({ p, onUpdate, onDelete }) {
     <div className={`pay-card status-${p.status}`}>
       <div className="pay-head">
         <span className="pay-brand">{p.brand}</span>
-        <button className="mini-del" onClick={() => onDelete(p.id)} aria-label="Remove">×</button>
+        <button className="mini-del" onClick={() => { if (window.confirm(`Delete "${p.brand}"?`)) onDelete(p.id); }} aria-label="Remove">×</button>
       </div>
       {p.ptype && <div className="pay-type">{p.ptype}</div>}
       {p.action && <div className="pay-action">{p.action}</div>}

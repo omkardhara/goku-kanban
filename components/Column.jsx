@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import Card from "./Card";
 
-export default function Column({
+function Column({
   column,
   tasks,
   onDropTask,
@@ -56,3 +56,5 @@ export default function Column({
     </div>
   );
 }
+
+export default memo(Column);

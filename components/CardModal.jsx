@@ -190,7 +190,7 @@ export default function CardModal({
         </div>
 
         <div className="modal-actions">
-          <button className="btn btn-danger" onClick={() => onDelete(task.id)}>Delete card</button>
+          <button className="btn btn-danger" onClick={() => { if (window.confirm(`Delete "${task.title}"?`)) onDelete(task.id); }}>Delete card</button>
           <button className="btn btn-primary" onClick={onClose}>Done</button>
         </div>
       </div>
