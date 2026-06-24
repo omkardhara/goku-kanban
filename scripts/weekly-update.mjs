@@ -5,9 +5,10 @@
  * writes the repo backup, and pushes. See README for the full flow.
  *
  * Usage:
+ *   node scripts/weekly-update.mjs --folder "D:/path/to/summaries"
+ *   node scripts/weekly-update.mjs --file ./summary.docx
  *   node scripts/weekly-update.mjs --file ./summary.txt
- *   cat summary.txt | node scripts/weekly-update.mjs
- * Flags: --file <path>  --week <2026-W25>  --no-git  --no-live  --force  --dry
+ * Flags: --folder <path>  --file <path>  --week <2026-W25>  --no-git  --no-live  --force  --dry
  * Env: BOARD_URL, BOARD_KEY
  */
 
@@ -16,6 +17,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
 import { parseSummary, parsePayments } from "../lib/parseDoc.mjs";
+import mammoth from "mammoth";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const TASKS_FILE = path.join(ROOT, "data", "tasks.json");
@@ -39,9 +41,34 @@ function isoWeek(date = new Date()) {
   return `${d.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
 }
 
+async function latestFileInFolder(folder) {
+  const entries = await fs.readdir(folder);
+  const docs = entries.filter((f) => /\.(docx|txt)$/i.test(f));
+  if (!docs.length) throw new Error(`No .docx or .txt files found in ${folder}`);
+  const withMtime = await Promise.all(
+    docs.map(async (f) => ({ f, mtime: (await fs.stat(path.join(folder, f))).mtimeMs }))
+  );
+  withMtime.sort((a, b) => b.mtime - a.mtime);
+  return path.join(folder, withMtime[0].f);
+}
+
+async function readFileAsText(filePath) {
+  if (/\.docx$/i.test(filePath)) {
+    const result = await mammoth.extractRawText({ path: filePath });
+    return result.value;
+  }
+  return fs.readFile(filePath, "utf8");
+}
+
 async function readInput() {
+  const folder = valOf("--folder");
   const file = valOf("--file");
-  if (file) return fs.readFile(file, "utf8");
+  if (folder) {
+    const latest = await latestFileInFolder(folder);
+    console.log(`• Reading: ${path.basename(latest)}`);
+    return readFileAsText(latest);
+  }
+  if (file) return readFileAsText(file);
   const chunks = [];
   for await (const c of process.stdin) chunks.push(c);
   return Buffer.concat(chunks).toString("utf8");
