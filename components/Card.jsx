@@ -11,8 +11,9 @@ function fmtDue(d) {
   }
 }
 
-function Card({ task, onOpen, onToggleCheck, onMoveDone, onDragStart, onDragEnd }) {
-  const isDone = task.column === "done";
+function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, onDragStart, onDragEnd }) {
+  const isDone = task.column === "done" || task.column === "archive";
+  const isArchived = task.column === "archive";
   const checks = task.checklist || [];
   const links = task.links || [];
   const doneCount = checks.filter((c) => c.done).length;
@@ -73,6 +74,20 @@ function Card({ task, onOpen, onToggleCheck, onMoveDone, onDragStart, onDragEnd 
             title="Mark as done"
             onClick={(e) => { e.stopPropagation(); onMoveDone && onMoveDone(task.id, e.clientX, e.clientY); }}
           >✓ Done</button>
+        )}
+        {task.column === "done" && onArchive && (
+          <button
+            className="card-archive-btn"
+            title="Move to archive"
+            onClick={(e) => { e.stopPropagation(); onArchive(task.id); }}
+          >↓ Archive</button>
+        )}
+        {isArchived && onRestore && (
+          <button
+            className="card-restore-btn"
+            title="Restore to Done"
+            onClick={(e) => { e.stopPropagation(); onRestore(task.id); }}
+          >↩ Restore</button>
         )}
       </div>
     </div>

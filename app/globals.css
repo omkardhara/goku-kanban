@@ -344,6 +344,75 @@ html, body {
 }
 .card-done-btn:hover { background: rgba(84, 224, 122, 0.12); border-color: rgba(84, 224, 122, 0.35); color: var(--green); }
 
+.card-archive-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.card-archive-btn:hover { background: rgba(255, 216, 61, 0.1); border-color: rgba(255, 216, 61, 0.35); color: var(--gold); }
+
+.card-restore-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.card-restore-btn:hover { background: rgba(84, 224, 122, 0.12); border-color: rgba(84, 224, 122, 0.35); color: var(--green); }
+
+/* ---------- drag reorder indicator ---------- */
+.card-slot { position: relative; }
+.card-slot.insert-before::before,
+.card-slot.insert-after::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+  z-index: 10;
+  pointer-events: none;
+}
+.card-slot.insert-before::before { top: -3px; }
+.card-slot.insert-after::after { bottom: -3px; }
+
+/* ---------- archive view ---------- */
+.archive-view { padding: 0 20px 40px; max-width: 1100px; }
+.archive-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.archive-head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.archive-empty { padding: 4px 0; font-size: 13px; }
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.nav-badge-muted { background: rgba(159, 176, 216, 0.18); color: var(--muted); }
+
 /* ---------- modal ---------- */
 .modal-back {
   position: fixed;

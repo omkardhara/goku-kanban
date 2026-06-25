@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Column from "./Column";
+import Card from "./Card";
 import Fighter from "./Fighter";
 import TaskModal from "./TaskModal";
 import CardModal from "./CardModal";
@@ -16,6 +17,7 @@ const VIEWS = [
   { id: "board", label: "Board" },
   { id: "payments", label: "Payments" },
   { id: "calendar", label: "Calendar" },
+  { id: "archive", label: "Archive" },
 ];
 
 export default function App() {
@@ -153,6 +155,37 @@ export default function App() {
     smallCelebrate(x, y);
   }, [api, smallCelebrate]);
 
+  const handleArchive = useCallback((id) => {
+    api("moveTask", { id, column: "archive" });
+  }, [api]);
+
+  const handleRestore = useCallback((id) => {
+    api("moveTask", { id, column: "done" });
+  }, [api]);
+
+  const handleReorder = useCallback((draggedId, targetId, pos, colId) => {
+    const colTasks = tasksByColumn[colId] || [];
+    const targetIdx = colTasks.findIndex((t) => t.id === targetId);
+    if (targetIdx === -1) return;
+    let newOrder;
+    if (pos === "before") {
+      const prev = colTasks[targetIdx - 1];
+      newOrder = prev ? (prev.order + colTasks[targetIdx].order) / 2 : colTasks[targetIdx].order - 1000;
+    } else {
+      const next = colTasks[targetIdx + 1];
+      newOrder = next ? (colTasks[targetIdx].order + next.order) / 2 : colTasks[targetIdx].order + 1000;
+    }
+    const draggedTask = board?.tasks[draggedId];
+    if (!draggedTask) return;
+    if (draggedTask.column !== colId) {
+      const wasDone = draggedTask.column === "done";
+      api("moveTask", { id: draggedId, column: colId, order: newOrder });
+      if (colId === "done" && !wasDone) smallCelebrate();
+    } else {
+      api("updateTask", { id: draggedId, patch: { order: newOrder } });
+    }
+  }, [board, tasksByColumn, api, smallCelebrate]);
+
   // task handlers
   const handleDrop = useCallback((id, toCol, x, y) => {
     const task = board?.tasks[id];
@@ -253,6 +286,7 @@ export default function App() {
               {v.label}
               {v.id === "payments" && stats?.payments ? <span className="nav-badge">{stats.payments}</span> : null}
               {v.id === "calendar" && stats?.events ? <span className="nav-badge">{stats.events}</span> : null}
+              {v.id === "archive" && (tasksByColumn["archive"] || []).length > 0 ? <span className="nav-badge nav-badge-muted">{(tasksByColumn["archive"] || []).length}</span> : null}
             </button>
           ))}
         </div>
@@ -279,11 +313,37 @@ export default function App() {
               onToggleCheck={handleToggleCheck}
               onAddCard={setAddingTo}
               onMoveDone={handleMoveDone}
+              onArchive={handleArchive}
+              onReorder={handleReorder}
             />
           ))}
         </div>
       ) : view === "payments" ? (
         <PaymentsView payments={board.payments} onUpdate={payUpdate} onDelete={payDelete} onAdd={payAdd} />
+      ) : view === "archive" ? (
+        <div className="archive-view">
+          <div className="archive-head">
+            <h2>Archive</h2>
+            {(tasksByColumn["archive"] || []).length > 0 && (
+              <span className="muted">{(tasksByColumn["archive"] || []).length} card{(tasksByColumn["archive"] || []).length !== 1 ? "s" : ""}</span>
+            )}
+          </div>
+          {(tasksByColumn["archive"] || []).length === 0 ? (
+            <p className="muted archive-empty">No archived cards yet. Hit "↓ Archive" on any done card to tidy up.</p>
+          ) : (
+            <div className="archive-grid">
+              {(tasksByColumn["archive"] || []).map((t) => (
+                <Card
+                  key={t.id}
+                  task={t}
+                  onOpen={setOpenTaskId}
+                  onToggleCheck={handleToggleCheck}
+                  onRestore={handleRestore}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       ) : (
         <CalendarView events={board.events} onDelete={evDelete} onAdd={evAdd} />
       )}

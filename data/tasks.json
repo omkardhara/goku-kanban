@@ -8,12 +8,32 @@
       "column": "todo",
       "source": "weekly",
       "week": "2026-W26",
-      "flags": ["info"],
+      "flags": [
+        "info"
+      ],
       "priority": "low",
       "checklist": [
-        { "id": "c_w1", "text": "Click me to open the card detail", "done": false },
-        { "id": "c_w2", "text": "Drag me to Done to transform", "done": false }
+        {
+          "id": "c_w1",
+          "text": "Click me to open the card detail",
+          "done": false
+        },
+        {
+          "id": "c_w2",
+          "text": "Drag me to Done to transform",
+          "done": false
+        }
       ]
+    },
+    {
+      "title": "Send H&M Lolla 2027 kickoff status into Tuesday's biweekly and the 1:1 with Allan",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W26_send-h-m-lolla-2027-kickoff-status-into-tuesday-s-biweekly-a",
+      "source": "weekly",
+      "week": "2026-W26"
     }
   ],
   "payments": [
