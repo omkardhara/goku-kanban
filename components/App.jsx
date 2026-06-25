@@ -34,6 +34,8 @@ export default function App() {
   const [flash, setFlash] = useState(false);
   const [toast, setToast] = useState(null);
   const [displayPower, setDisplayPower] = useState(0);
+  const [filterPriority, setFilterPriority] = useState(null);
+  const [sortByPriority, setSortByPriority] = useState(false);
 
   const prevTier = useRef(0);
   const prevPower = useRef(0);
@@ -149,6 +151,18 @@ export default function App() {
     for (const col in map) map[col].sort((a, b) => (a.order || 0) - (b.order || 0));
     return map;
   }, [board?.tasks]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const PRIO_RANK = { high: 0, med: 1, low: 2 };
+  const displayTasksByColumn = useMemo(() => {
+    if (!filterPriority && !sortByPriority) return tasksByColumn;
+    const result = {};
+    for (const [colId, tasks] of Object.entries(tasksByColumn)) {
+      let list = filterPriority ? tasks.filter((t) => t.priority === filterPriority) : tasks;
+      if (sortByPriority) list = [...list].sort((a, b) => (PRIO_RANK[a.priority] ?? 3) - (PRIO_RANK[b.priority] ?? 3));
+      result[colId] = list;
+    }
+    return result;
+  }, [tasksByColumn, filterPriority, sortByPriority]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleMoveDone = useCallback((id, x, y) => {
     api("moveTask", { id, column: "done" });
@@ -302,22 +316,41 @@ export default function App() {
       ) : !board ? (
         <p className="error">{error}</p>
       ) : view === "board" ? (
-        <div className="board">
-          {board.columns.map((col) => (
-            <Column
-              key={col.id}
-              column={col}
-              tasks={tasksByColumn[col.id] || []}
-              onDropTask={handleDrop}
-              onOpen={setOpenTaskId}
-              onToggleCheck={handleToggleCheck}
-              onAddCard={setAddingTo}
-              onMoveDone={handleMoveDone}
-              onArchive={handleArchive}
-              onReorder={handleReorder}
-            />
-          ))}
-        </div>
+        <>
+          <div className="board-toolbar">
+            <div className="toolbar-group">
+              {[null, "high", "med", "low"].map((p) => (
+                <button
+                  key={p ?? "all"}
+                  className={`toolbar-pill${filterPriority === p ? " on" : ""}${p ? ` tp-${p}` : ""}`}
+                  onClick={() => setFilterPriority(filterPriority === p ? null : p)}
+                >
+                  {p === null ? "All" : p === "med" ? "Medium" : p.charAt(0).toUpperCase() + p.slice(1)}
+                </button>
+              ))}
+            </div>
+            <button
+              className={`toolbar-pill${sortByPriority ? " on tp-sort" : ""}`}
+              onClick={() => setSortByPriority(!sortByPriority)}
+            >↕ Sort by priority</button>
+          </div>
+          <div className="board">
+            {board.columns.map((col) => (
+              <Column
+                key={col.id}
+                column={col}
+                tasks={displayTasksByColumn[col.id] || []}
+                onDropTask={handleDrop}
+                onOpen={setOpenTaskId}
+                onToggleCheck={handleToggleCheck}
+                onAddCard={setAddingTo}
+                onMoveDone={handleMoveDone}
+                onArchive={handleArchive}
+                onReorder={handleReorder}
+              />
+            ))}
+          </div>
+        </>
       ) : view === "payments" ? (
         <PaymentsView payments={board.payments} onUpdate={payUpdate} onDelete={payDelete} onAdd={payAdd} />
       ) : view === "archive" ? (
