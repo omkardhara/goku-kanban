@@ -362,6 +362,31 @@ html, body {
 }
 .add-card-btn:hover { color: var(--text); border-color: var(--orange); }
 
+.card-pos-btns {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 2;
+}
+.card:hover .card-pos-btns { opacity: 1; }
+.card-pos-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 1px 4px;
+  line-height: 1.4;
+  border-radius: 3px;
+  transition: color 0.12s ease, background 0.12s ease;
+}
+.card-pos-btn:hover { color: var(--text); background: rgba(255, 255, 255, 0.08); }
+
 .card-done-btn {
   margin-left: auto;
   background: transparent;

@@ -49,44 +49,52 @@ function Column({
         <span className="col-count">{tasks.length}</span>
       </div>
 
-      {tasks.map((t) => (
-        <div
-          key={t.id}
-          className={`card-slot${dragOverId === t.id ? ` insert-${dragPos}` : ""}`}
-          onDragOver={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const rect = e.currentTarget.getBoundingClientRect();
-            setDragOverId(t.id);
-            setDragPos(e.clientY < rect.top + rect.height / 2 ? "before" : "after");
-          }}
-          onDragLeave={(e) => {
-            if (!e.currentTarget.contains(e.relatedTarget)) setDragOverId(null);
-          }}
-          onDrop={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setOver(false);
-            const pos = dragPos;
-            setDragOverId(null);
-            const draggedId = e.dataTransfer.getData("text/plain");
-            if (draggedId && draggedId !== t.id) {
-              onReorder(draggedId, t.id, pos, column.id);
-            }
-          }}
-        >
-          <Card
-            task={t}
-            onOpen={onOpen}
-            onToggleCheck={onToggleCheck}
-            onMoveDone={onMoveDone}
-            onArchive={onArchive}
-            onRevert={onRevert}
-            onDragStart={onDragStart}
-            onDragEnd={onDragEnd}
-          />
-        </div>
-      ))}
+      {tasks.map((t, i) => {
+        const moveTop  = i > 0                  ? () => onReorder(t.id, tasks[0].id,          "before", column.id) : null;
+        const moveUp   = i > 0                  ? () => onReorder(t.id, tasks[i - 1].id,      "before", column.id) : null;
+        const moveDown = i < tasks.length - 1   ? () => onReorder(t.id, tasks[i + 1].id,      "after",  column.id) : null;
+        return (
+          <div
+            key={t.id}
+            className={`card-slot${dragOverId === t.id ? ` insert-${dragPos}` : ""}`}
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const rect = e.currentTarget.getBoundingClientRect();
+              setDragOverId(t.id);
+              setDragPos(e.clientY < rect.top + rect.height / 2 ? "before" : "after");
+            }}
+            onDragLeave={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget)) setDragOverId(null);
+            }}
+            onDrop={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setOver(false);
+              const pos = dragPos;
+              setDragOverId(null);
+              const draggedId = e.dataTransfer.getData("text/plain");
+              if (draggedId && draggedId !== t.id) {
+                onReorder(draggedId, t.id, pos, column.id);
+              }
+            }}
+          >
+            <Card
+              task={t}
+              onOpen={onOpen}
+              onToggleCheck={onToggleCheck}
+              onMoveDone={onMoveDone}
+              onArchive={onArchive}
+              onRevert={onRevert}
+              onMoveTop={moveTop}
+              onMoveUp={moveUp}
+              onMoveDown={moveDown}
+              onDragStart={onDragStart}
+              onDragEnd={onDragEnd}
+            />
+          </div>
+        );
+      })}
 
       <button className="add-card-btn" onClick={() => onAddCard(column.id)}>+ Add a card</button>
     </div>

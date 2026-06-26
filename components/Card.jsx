@@ -11,7 +11,7 @@ function fmtDue(d) {
   }
 }
 
-function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, onRevert, onDragStart, onDragEnd }) {
+function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, onRevert, onMoveTop, onMoveUp, onMoveDown, onDragStart, onDragEnd }) {
   const isDone = task.column === "done" || task.column === "archive";
   const isArchived = task.column === "archive";
   const checks = task.checklist || [];
@@ -36,6 +36,13 @@ function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, o
         onDragEnd && onDragEnd();
       }}
     >
+      {(onMoveTop || onMoveUp || onMoveDown) && (
+        <div className="card-pos-btns" onClick={(e) => e.stopPropagation()}>
+          {onMoveTop && <button className="card-pos-btn" title="Move to top" onClick={onMoveTop}>⇈</button>}
+          {onMoveUp   && <button className="card-pos-btn" title="Move up"    onClick={onMoveUp}>↑</button>}
+          {onMoveDown && <button className="card-pos-btn" title="Move down"  onClick={onMoveDown}>↓</button>}
+        </div>
+      )}
       <div className="card-title">{task.title}</div>
 
       {task.flags && task.flags.length > 0 && (
