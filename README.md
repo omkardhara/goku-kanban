@@ -12,9 +12,10 @@ Complete enough work and the fighter transforms: Base → Ki Awakened → Super 
 - **Cards** — title, notes, checklist, flags (bms / client / payments / misc), priority (High / Medium / Low), due date, links
 - **Drag between columns** — drop a card onto any column to move it
 - **Drag to reorder** — drag cards within a column to reprioritise; an orange indicator line shows the drop position
+- **Quick reposition buttons** — hover any card to reveal ⇈ ↑ ↓ buttons (move to top / move up / move down); context-aware — top card only shows ↓, bottom card shows ⇈ ↑
 - **Priority filter + sort** — filter the board to show only High / Medium / Low cards; toggle sort-by-priority within each column
 - **Done → Archive** — archive completed cards off the board; restore them any time from the Archive tab
-- **Revert to This Week** — one-click button on done cards to send them back to the This Week column
+- **Revert to This Week** — one-click ↩ Week button on done cards to send them back without drag-and-drop
 - **Payments tracker** — separate view to track brand/client payment follow-ups with status (pending / chasing / closed)
 - **Calendar view** — weekly event list with add/delete
 - **Power level meter** — ratio of done cards + completed checklist items drives a numeric power level and fighter transformation
@@ -159,7 +160,7 @@ node scripts/weekly-update.mjs --folder "D:\path\to\summaries" --no-git
 | Power tiers + fighter transformations | `lib/tiers.js` — names, colours, unlock thresholds |
 | Flags + flag colours | `FLAGS` array in `components/CardModal.jsx` + `.flag.*` in `app/globals.css` |
 | Particle intensity | `burstAt()` `count` param in `lib/fx.js` |
-| Nav quick links | `nav-links` div in `components/App.jsx` |
+| Nav quick links | `nav-links` div in `components/App.jsx` — currently: Dashboard, 2026-27, 2025-26, Sales Target |
 | Summary parser keywords | `TASK_SECTION_HINTS` + `detectFlags()` in `lib/parseDoc.mjs` |
 
 ---
