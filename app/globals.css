@@ -376,6 +376,20 @@ html, body {
 }
 .card-done-btn:hover { background: rgba(84, 224, 122, 0.12); border-color: rgba(84, 224, 122, 0.35); color: var(--green); }
 
+.card-revert-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.card-revert-btn:hover { background: rgba(52, 214, 255, 0.1); border-color: rgba(52, 214, 255, 0.35); color: var(--ki); }
+
 .card-archive-btn {
   margin-left: auto;
   background: transparent;

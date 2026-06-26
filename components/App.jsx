@@ -173,6 +173,10 @@ export default function App() {
     api("moveTask", { id, column: "archive" });
   }, [api]);
 
+  const handleRevert = useCallback((id) => {
+    api("moveTask", { id, column: "todo" });
+  }, [api]);
+
   const handleRestore = useCallback((id) => {
     api("moveTask", { id, column: "done" });
   }, [api]);
@@ -346,6 +350,7 @@ export default function App() {
                 onAddCard={setAddingTo}
                 onMoveDone={handleMoveDone}
                 onArchive={handleArchive}
+                onRevert={handleRevert}
                 onReorder={handleReorder}
               />
             ))}

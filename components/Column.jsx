@@ -12,6 +12,7 @@ function Column({
   onAddCard,
   onMoveDone,
   onArchive,
+  onRevert,
   onReorder,
   onDragStart,
   onDragEnd,
@@ -80,6 +81,7 @@ function Column({
             onToggleCheck={onToggleCheck}
             onMoveDone={onMoveDone}
             onArchive={onArchive}
+            onRevert={onRevert}
             onDragStart={onDragStart}
             onDragEnd={onDragEnd}
           />

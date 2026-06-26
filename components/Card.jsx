@@ -11,7 +11,7 @@ function fmtDue(d) {
   }
 }
 
-function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, onDragStart, onDragEnd }) {
+function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, onRevert, onDragStart, onDragEnd }) {
   const isDone = task.column === "done" || task.column === "archive";
   const isArchived = task.column === "archive";
   const checks = task.checklist || [];
@@ -74,6 +74,13 @@ function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, o
             title="Mark as done"
             onClick={(e) => { e.stopPropagation(); onMoveDone && onMoveDone(task.id, e.clientX, e.clientY); }}
           >✓ Done</button>
+        )}
+        {task.column === "done" && onRevert && (
+          <button
+            className="card-revert-btn"
+            title="Move back to This Week"
+            onClick={(e) => { e.stopPropagation(); onRevert(task.id); }}
+          >↩ Week</button>
         )}
         {task.column === "done" && onArchive && (
           <button
