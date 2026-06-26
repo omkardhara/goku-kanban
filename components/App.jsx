@@ -312,6 +312,7 @@ export default function App() {
           <a className="nav-link" href="https://script.google.com/a/macros/bookmyshow.com/s/AKfycbwQBgMFLV6Nhi0bAGyD2WKXdTlvJs67VVm4xDF9ZAIhutN5HTbRxN3yWtveSVCMbiR0pw/exec" target="_blank" rel="noreferrer">Dashboard</a>
           <a className="nav-link" href="https://docs.google.com/spreadsheets/d/1V7dCI0-5ZqW0lRd42UDW_xfo5sNQO8UwyYlTffOlyPg/edit?usp=sharing" target="_blank" rel="noreferrer">2026-27</a>
           <a className="nav-link" href="https://docs.google.com/spreadsheets/d/1Y7NmUMgWrGi2rVGoixkkNkQKMuhT1F-OZERol1UTfrE/edit?usp=sharing" target="_blank" rel="noreferrer">2025-26</a>
+          <a className="nav-link" href="https://docs.google.com/spreadsheets/d/11uMHinDJU-PJcGyPksUMWvmvnzF4k9G3ZUu0kqAjcm4/edit?gid=987424332#gid=987424332" target="_blank" rel="noreferrer">Sales Target</a>
         </div>
       </div>
 
