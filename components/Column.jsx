@@ -14,6 +14,7 @@ function Column({
   onArchive,
   onRevert,
   onReorder,
+  posButtons,
   onDragStart,
   onDragEnd,
 }) {
@@ -50,9 +51,9 @@ function Column({
       </div>
 
       {tasks.map((t, i) => {
-        const moveTop  = i > 0                  ? () => onReorder(t.id, tasks[0].id,          "before", column.id) : null;
-        const moveUp   = i > 0                  ? () => onReorder(t.id, tasks[i - 1].id,      "before", column.id) : null;
-        const moveDown = i < tasks.length - 1   ? () => onReorder(t.id, tasks[i + 1].id,      "after",  column.id) : null;
+        const moveTop  = posButtons && i > 0                ? () => onReorder(t.id, tasks[0].id,     "before", column.id) : null;
+        const moveUp   = posButtons && i > 0                ? () => onReorder(t.id, tasks[i-1].id,   "before", column.id) : null;
+        const moveDown = posButtons && i < tasks.length - 1 ? () => onReorder(t.id, tasks[i+1].id,   "after",  column.id) : null;
         return (
           <div
             key={t.id}

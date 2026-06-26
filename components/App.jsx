@@ -353,6 +353,7 @@ export default function App() {
                 onArchive={handleArchive}
                 onRevert={handleRevert}
                 onReorder={handleReorder}
+                posButtons={!sortByPriority}
               />
             ))}
           </div>

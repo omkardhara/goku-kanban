@@ -12,6 +12,7 @@ const COLS = [
   { id: "todo", label: "This Week" },
   { id: "doing", label: "In Progress" },
   { id: "done", label: "Done" },
+  { id: "archive", label: "Archive" },
 ];
 
 export default function CardModal({

@@ -12,9 +12,9 @@ Complete enough work and the fighter transforms: Base → Ki Awakened → Super 
 - **Cards** — title, notes, checklist, flags (bms / client / payments / misc), priority (High / Medium / Low), due date, links
 - **Drag between columns** — drop a card onto any column to move it
 - **Drag to reorder** — drag cards within a column to reprioritise; an orange indicator line shows the drop position
-- **Quick reposition buttons** — hover any card to reveal ⇈ ↑ ↓ buttons (move to top / move up / move down); context-aware — top card only shows ↓, bottom card shows ⇈ ↑
+- **Quick reposition buttons** — hover any card to reveal ⇈ ↑ ↓ buttons (move to top / move up / move down); context-aware — top card only shows ↓, bottom card shows ⇈ ↑; hidden automatically when sort-by-priority is active
 - **Priority filter + sort** — filter the board to show only High / Medium / Low cards; toggle sort-by-priority within each column
-- **Done → Archive** — archive completed cards off the board; restore them any time from the Archive tab
+- **Done → Archive** — archive completed cards off the board; restore them any time from the Archive tab or via the Move column selector in the card modal
 - **Revert to This Week** — one-click ↩ Week button on done cards to send them back without drag-and-drop
 - **Payments tracker** — separate view to track brand/client payment follow-ups with status (pending / chasing / closed)
 - **Calendar view** — weekly event list with add/delete

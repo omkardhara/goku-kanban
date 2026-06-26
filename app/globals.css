@@ -374,6 +374,7 @@ html, body {
   z-index: 2;
 }
 .card:hover .card-pos-btns { opacity: 1; }
+.card:has(.card-pos-btns) .card-title { padding-right: 54px; }
 .card-pos-btn {
   background: none;
   border: none;
