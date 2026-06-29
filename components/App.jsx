@@ -158,7 +158,7 @@ export default function App() {
     const result = {};
     for (const [colId, tasks] of Object.entries(tasksByColumn)) {
       let list = filterPriority ? tasks.filter((t) => t.priority === filterPriority) : tasks;
-      if (sortByPriority) list = [...list].sort((a, b) => (PRIO_RANK[a.priority] ?? 3) - (PRIO_RANK[b.priority] ?? 3));
+      if (sortByPriority) list = [...list].sort((a, b) => (PRIO_RANK[a.priority] ?? 99) - (PRIO_RANK[b.priority] ?? 99));
       result[colId] = list;
     }
     return result;

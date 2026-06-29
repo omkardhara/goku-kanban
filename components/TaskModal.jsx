@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const FLAGS = ["bms", "client", "payments", "misc"];
 const PRIOS = [
@@ -15,6 +15,12 @@ export default function TaskModal({ column, onClose, onCreate }) {
   const [dueDate, setDueDate] = useState("");
   const [priority, setPriority] = useState(null);
   const [flags, setFlags] = useState([]);
+
+  useEffect(() => {
+    const handler = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [onClose]);
 
   function toggleFlag(f) {
     setFlags((cur) => (cur.includes(f) ? cur.filter((x) => x !== f) : [...cur, f]));
@@ -35,8 +41,8 @@ export default function TaskModal({ column, onClose, onCreate }) {
   }
 
   return (
-    <div className="modal-back" onMouseDown={onClose}>
-      <div className="modal" onMouseDown={(e) => e.stopPropagation()}>
+    <div className="modal-back" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="modal">
         <h3>New card</h3>
         <form onSubmit={submit}>
           <div className="field">

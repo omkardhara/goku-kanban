@@ -24,7 +24,11 @@ function PaymentCard({ p, onUpdate, onDelete }) {
       <select
         className="select pay-status"
         value={p.status}
-        onChange={(e) => onUpdate(p.id, { status: e.target.value })}
+        onChange={(e) => {
+          const patch = { status: e.target.value };
+          if (e.target.value === "chasing") patch.lastChased = new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+          onUpdate(p.id, patch);
+        }}
       >
         {STATUSES.map((s) => (
           <option key={s.id} value={s.id}>{s.label}</option>

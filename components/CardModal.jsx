@@ -81,8 +81,8 @@ export default function CardModal({
   }
 
   return (
-    <div className="modal-back" onMouseDown={onClose}>
-      <div className="modal modal-lg" onMouseDown={(e) => e.stopPropagation()}>
+    <div className="modal-back" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+      <div className="modal modal-lg">
         <button className="modal-close" onClick={onClose} aria-label="Close">×</button>
 
         <textarea
