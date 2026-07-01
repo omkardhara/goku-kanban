@@ -135,7 +135,7 @@ BOARD_URL=https://your-board.vercel.app BOARD_KEY=yourkey \
 - `--no-live` — only update the local backup, don't POST to the live board
 - `--week 2026-W26` — override the auto-detected ISO week
 
-**How it merges:** the script GETs the live board first, filters out any tasks already present by ID, then POSTs only the new ones. Manually created cards and manually updated payment statuses are never overwritten.
+**How it merges:** the script GETs the live board first, then filters candidates two ways before POSTing: (1) only `todo` tasks are imported — checked/done items in the doc are skipped; (2) any task whose title (normalised to a slug) already exists on the board is skipped, regardless of which week or source it came from. Manually created cards and manually updated payment statuses are never overwritten.
 
 **Parser** (`lib/parseDoc.mjs`): looks for sections named like *Master To-Do, Action Items, This Week, Follow-ups, Priorities*. Detects `☐`/`☑` Unicode checkboxes (from Google Docs exports) and `[ ]`/`[x]` markdown checkboxes. Parses a `PAYMENTS FOLLOW-UP` section into payment items. Tweak the section keywords and flag-detection regexes in that file to match your summary format.
 

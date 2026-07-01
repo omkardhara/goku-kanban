@@ -16,7 +16,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { execSync } from "node:child_process";
-import { parseSummary, parsePayments } from "../lib/parseDoc.mjs";
+import { parseSummary, parsePayments, parseEvents } from "../lib/parseDoc.mjs";
 import mammoth from "mammoth";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -128,6 +128,7 @@ async function main() {
   const week = valOf("--week") || isoWeek();
   const parsed = parseSummary(text);
   const payments = parsePayments(text);
+  const events = parseEvents(text);
 
   if (!process.env.BOARD_URL) {
     console.warn("⚠ BOARD_URL not set — live board will not be updated. Set it to your Vercel URL.");
@@ -138,7 +139,10 @@ async function main() {
     return;
   }
 
-  const candidates = parsed.map((t) => ({ ...t, id: `wk_${week}_${slug(t.title)}`, source: "weekly", week }));
+  // Only import open (todo) tasks — skip anything already marked done/checked in the doc
+  const candidates = parsed
+    .filter((t) => t.column === "todo")
+    .map((t) => ({ ...t, id: `wk_${week}_${slug(t.title)}`, source: "weekly", week }));
 
   if (has("--dry")) {
     console.log(`Week ${week} — ${candidates.length} parsed task(s), ${payments.length} payment(s):`);
@@ -158,10 +162,22 @@ async function main() {
 
   if (live && !has("--no-live") && payments.length) {
     try {
-      await postLive("mergePayments", { payments });
-      console.log(`✓ Payments merged: ${payments.length} from doc (existing statuses preserved).`);
+      // Replace payment list with fresh doc content; preserve any statuses the user already set
+      const statusMap = new Map((live.payments || []).map((p) => [p.brand.toLowerCase(), p.status]));
+      const refreshed = payments.map((p) => ({ ...p, status: statusMap.get(p.brand.toLowerCase()) ?? p.status }));
+      await postLive("setPayments", { payments: refreshed });
+      console.log(`✓ Payments refreshed: ${refreshed.length} entries (statuses preserved for known brands).`);
     } catch (e) {
       console.warn("⚠ payments sync failed:", e.message);
+    }
+  }
+
+  if (live && !has("--no-live") && events.length) {
+    try {
+      await postLive("setEvents", { events });
+      console.log(`✓ Calendar synced: ${events.length} meetings.`);
+    } catch (e) {
+      console.warn("⚠ calendar sync failed:", e.message);
     }
   }
 

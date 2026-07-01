@@ -1,5 +1,5 @@
 {
-  "week": "2026-W26",
+  "week": "2026-W27",
   "tasks": [
     {
       "id": "wk_2026-W26_welcome",
@@ -34,6 +34,185 @@
       "id": "wk_2026-W26_send-h-m-lolla-2027-kickoff-status-into-tuesday-s-biweekly-a",
       "source": "weekly",
       "week": "2026-W26"
+    },
+    {
+      "title": "Diageo books closure: you replied Jun 18 (asked for time, finance SPOC resuming Monday) and looped Yukta Jun 24 to confirm all billing through May 2026 is closed. Vaibhav wants everything wrapped this week. Open ends: Yukta's confirmation that billing is closed, and the 4 John Mayer POs (item 4). [RE: Open PO 4502315371, message of Jun 24, from Omkar to Yukta]",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_diageo-books-closure-you-replied-jun-18-asked-for-time-finan",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Sales Target Tracker 26-27: remove the SHEIN row. Allan assigned this to you Jun 25: \"this is not happening, please remove this.\" [Google Sheets comment, Jun 25, from Allan Mathew]",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_sales-target-tracker-26-27-remove-the-shein-row-allan-assign",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Diageo 3 rejected invoices: done. Re-uploaded with supporting documents Jun 26 and PTP numbers shared with Vaibhav (0002059192, 0002058607, 0002058609). Next step is Vaibhav confirming they are in order, not anything from you. [Rejected Invoices - BMS, message of Jun 26, from Omkar]",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_diageo-3-rejected-invoices-done-re-uploaded-with-supporting-",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Diageo: 4 POs still awaited on the portal against John Mayer tickets. You flagged this to Vaibhav Jun 26 with PIs attached. This is the live portal item now (the earlier Post Malone additional-expense invoice is generated, Priya confirmed nothing pending at our end Jun 16). Get the 4 POs raised so billing can close this week. [Rejected Invoices - BMS, message of Jun 26, from Omkar]",
+      "priority": null,
+      "flags": [
+        "bms",
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_diageo-4-pos-still-awaited-on-the-portal-against-john-mayer-",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Lolla 27 timelines (Krishna): review the proposed Lolla 27 brand timelines and the feedback sheet Krishna shared Jun 24. Pre-sale tentative date is 22 July, so the pre-sale action items need your input. Send feedback. [Timelines for LOLLA '27 | Brands, message of Jun 24, from Krishna Bhutoria]",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_lolla-27-timelines-krishna-review-the-proposed-lolla-27-bran",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "CS Team Onboarding Doc: you replied to Toral Jun 25, so this is moving. Allan wanted the final version by Friday Jun 26 with Toral and Krishna's notes. Confirm it is closed out. [CS Team Onboarding Doc]",
+      "priority": null,
+      "flags": [],
+      "dueDate": "2026-07-03",
+      "column": "todo",
+      "id": "wk_2026-W27_cs-team-onboarding-doc-you-replied-to-toral-jun-25-so-this-i",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Grant Krishna access to the Pending Payments sheet (he requested it Jun 25). Part of the brand followups handover. [Share request for \"Pending Payments\", Jun 25]",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_grant-krishna-access-to-the-pending-payments-sheet-he-reques",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Yukta Raje shared 4 invoice numbers with PO and PTP numbers Jun 26 (total Rs 66,96,500: 9,14,500 / 41,30,000 / 11,80,000 / 4,72,000). These are payments in processing. Log the PTP numbers against the right rows in the payment tracker. Brand mapping is not stated in the mail, confirm with Yukta if unclear. [message of Jun 26, from Yukta Raje]",
+      "priority": null,
+      "flags": [
+        "client",
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_yukta-raje-shared-4-invoice-numbers-with-po-and-ptp-numbers-",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Nivea Lolla 26 pending payments: you acknowledged Priyanka Vaidya (Beiersdorf) Jun 24. She said the Nivea team would update early next week. Watch for it. 3 items open: RO Rs 2,12,300 plus tax; invoices (Gini and influencer) Rs 23,60,000 incl tax; balance partnership 25% Rs 88,50,000 incl tax. Holdup is at Omnicom / Nivea. [BMS X Nivea - Lolla 26 | Pending Payments]",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_nivea-lolla-26-pending-payments-you-acknowledged-priyanka-va",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Weekly payment update to Rustom Mistri and Ashok Vyas: sent Saturday Jun 27 at 9:17 AM (this week's figures, ₹38 lacs received). Done for this cycle. Samradha asked Jun 28 whether Kotak's previous-season payment is cleared, you replied still pending. Next update due Friday Jul 3.",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_weekly-payment-update-to-rustom-mistri-and-ashok-vyas-sent-s",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "ITC / Jagran / PMC (Sanjana): silent since the late-May chase, invoice numbers and dates already shared. Around 4 to 5 weeks. Chase again.",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_itc-jagran-pmc-sanjana-silent-since-the-late-may-chase-invoi",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Lolla 27 x Nivea empanelment: you are lead SPOC. Mandatory PO policy sent to Rashmi Nandoskar (Beiersdorf) Jun 12. Coordinate with Krishna on the scope split. Separately, Vanita and Samradha are at the negotiation stage with Nivea procurement and want to offer a \"small win\" to close this year. Sunmeet (Corporate Solutions) shared a reward plan worth 10 lakhs Jun 23 (you are cc). Track how that lands so it aligns with the empanelment scope. [Lolla 27 x Nivea (Sam T discussion), Jun 23]",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_lolla-27-x-nivea-empanelment-you-are-lead-spoc-mandatory-po-",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Sales Target Tracker 26-27: remove the SHEIN row.",
+      "notes": "Allan assigned this to you Jun 25: \"this is not happening, please remove this.\"\n\n[Google Sheets comment, Jun 25, from Allan Mathew]",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_sales-target-tracker-26-27-remove-the-shein-row",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Diageo 3 rejected invoices: done.",
+      "notes": "Re-uploaded with supporting documents Jun 26 and PTP numbers shared with Vaibhav (0002059192, 0002058607, 0002058609). Next step is Vaibhav confirming they are in order, not anything from you.\n\n[Rejected Invoices - BMS, message of Jun 26, from Omkar]",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_diageo-3-rejected-invoices-done",
+      "source": "weekly",
+      "week": "2026-W27"
+    },
+    {
+      "title": "Lolla 27 x Nivea empanelment: you are lead SPOC.",
+      "notes": "Mandatory PO policy sent to Rashmi Nandoskar (Beiersdorf) Jun 12. Coordinate with Krishna on the scope split. Separately, Vanita and Samradha are at the negotiation stage with Nivea procurement and want to offer a \"small win\" to close this year. Sunmeet (Corporate Solutions) shared a reward plan worth 10 lakhs Jun 23 (you are cc). Track how that lands so it aligns with the empanelment scope.\n\n[Lolla 27 x Nivea (Sam T discussion), Jun 23]",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W27_lolla-27-x-nivea-empanelment-you-are-lead-spoc",
+      "source": "weekly",
+      "week": "2026-W27"
     }
   ],
   "payments": [
