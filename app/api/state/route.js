@@ -5,7 +5,7 @@ import {
   bootstrapBoard, normalize, boardStats, addTask, updateTask, moveTask, deleteTask,
   toggleChecklistItem, addChecklistItem, deleteChecklistItem, addLink, deleteLink,
   setPayments, mergePayments, addPayment, updatePayment, deletePayment, setEvents, addEvent,
-  deleteEvent, mergeWeekly,
+  deleteEvent, mergeWeekly, addColumn, renameColumn, reorderColumn, deleteColumn,
 } from "../../../lib/board";
 
 export const dynamic = "force-dynamic";
@@ -49,6 +49,10 @@ export async function POST(request) {
     case "setEvents": board = setEvents(board, payload.events || []); break;
     case "addEvent": board = addEvent(board, payload); break;
     case "deleteEvent": board = deleteEvent(board, payload.id); break;
+    case "addColumn": board = addColumn(board, payload.title); break;
+    case "renameColumn": board = renameColumn(board, payload.id, payload.title); break;
+    case "reorderColumn": board = reorderColumn(board, payload.id, payload.toIndex); break;
+    case "deleteColumn": board = deleteColumn(board, payload.id); break;
     case "mergeWeekly": {
       const res = mergeWeekly(board, payload.week, payload.tasks || []);
       board = res.board; extra.added = res.added;

@@ -8,15 +8,9 @@ const PRIOS = [
   { id: "med", label: "Medium" },
   { id: "low", label: "Low" },
 ];
-const COLS = [
-  { id: "todo", label: "This Week" },
-  { id: "doing", label: "In Progress" },
-  { id: "done", label: "Done" },
-  { id: "archive", label: "Archive" },
-];
-
 export default function CardModal({
   task,
+  columns,
   onClose,
   onUpdate,
   onMove,
@@ -44,6 +38,7 @@ export default function CardModal({
     return () => document.removeEventListener("keydown", handler);
   }, [onClose]);
 
+  const cols = [...(columns || []), { id: "archive", title: "Archive" }];
   const checks = task.checklist || [];
   const links = task.links || [];
   const doneCount = checks.filter((c) => c.done).length;
@@ -99,8 +94,8 @@ export default function CardModal({
             value={task.column}
             onChange={(e) => onMove(task.id, e.target.value)}
           >
-            {COLS.map((c) => (
-              <option key={c.id} value={c.id}>{c.label}</option>
+            {cols.map((c) => (
+              <option key={c.id} value={c.id}>{c.title}</option>
             ))}
           </select>
           <input

@@ -3,6 +3,8 @@
 import { memo, useState } from "react";
 import Card from "./Card";
 
+const COLUMN_DND_TYPE = "application/x-column-id";
+
 function Column({
   column,
   tasks,
@@ -17,28 +19,54 @@ function Column({
   posButtons,
   onDragStart,
   onDragEnd,
+  onRenameColumn,
+  onDeleteColumn,
+  onReorderColumn,
+  deletable,
 }) {
   const [over, setOver] = useState(false);
+  const [colOver, setColOver] = useState(false);
   const [dragOverId, setDragOverId] = useState(null);
   const [dragPos, setDragPos] = useState("after");
+  const [editing, setEditing] = useState(false);
+  const [draftTitle, setDraftTitle] = useState(column.title);
   const isDone = column.id === "done";
+
+  function commitRename() {
+    setEditing(false);
+    const v = draftTitle.trim();
+    if (v && v !== column.title) onRenameColumn(column.id, v);
+    else setDraftTitle(column.title);
+  }
 
   return (
     <div
-      className={`column ${over ? "dragover" : ""} ${isDone ? "col-done" : ""}`}
+      className={`column ${over ? "dragover" : ""} ${colOver ? "column-dragover" : ""} ${isDone ? "col-done" : ""}`}
       onDragOver={(e) => {
         e.preventDefault();
+        if (e.dataTransfer.types.includes(COLUMN_DND_TYPE)) {
+          e.dataTransfer.dropEffect = "move";
+          if (!colOver) setColOver(true);
+          return;
+        }
         e.dataTransfer.dropEffect = "move";
         if (!over) setOver(true);
       }}
       onDragLeave={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget)) {
           setOver(false);
+          setColOver(false);
           setDragOverId(null);
         }
       }}
       onDrop={(e) => {
         e.preventDefault();
+        const draggedColId = e.dataTransfer.getData(COLUMN_DND_TYPE);
+        if (draggedColId) {
+          setColOver(false);
+          if (draggedColId !== column.id) onReorderColumn(draggedColId, column.id);
+          return;
+        }
         setOver(false);
         setDragOverId(null);
         const id = e.dataTransfer.getData("text/plain");
@@ -46,8 +74,44 @@ function Column({
       }}
     >
       <div className="col-head">
-        <span className="col-title">{column.title}</span>
+        <span
+          className="col-drag-handle"
+          draggable
+          title="Drag to reorder columns"
+          onDragStart={(e) => {
+            e.stopPropagation();
+            e.dataTransfer.setData(COLUMN_DND_TYPE, column.id);
+            e.dataTransfer.effectAllowed = "move";
+          }}
+        >⠿</span>
+        {editing ? (
+          <input
+            className="col-title-input"
+            autoFocus
+            value={draftTitle}
+            onChange={(e) => setDraftTitle(e.target.value)}
+            onBlur={commitRename}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") e.currentTarget.blur();
+              if (e.key === "Escape") { setDraftTitle(column.title); setEditing(false); }
+            }}
+            onClick={(e) => e.stopPropagation()}
+          />
+        ) : (
+          <span className="col-title" title="Double-click to rename" onDoubleClick={() => setEditing(true)}>
+            {column.title}
+          </span>
+        )}
         <span className="col-count">{tasks.length}</span>
+        {deletable && (
+          <button
+            className="col-del"
+            title="Delete column"
+            onClick={() => {
+              if (window.confirm(`Delete "${column.title}"? Its cards will move to This Week.`)) onDeleteColumn(column.id);
+            }}
+          >×</button>
+        )}
       </div>
 
       {tasks.map((t, i) => {

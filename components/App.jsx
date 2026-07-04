@@ -11,6 +11,12 @@ import CalendarView from "./CalendarView";
 import Backgrounds from "./Backgrounds";
 import { TIERS, tierFor, powerLevel } from "../lib/tiers";
 import { burstAt, shakeScreen } from "../lib/fx";
+import AddColumn from "./AddColumn";
+import {
+  moveTask, updateTask, deleteTask, addTask, toggleChecklistItem, addChecklistItem,
+  deleteChecklistItem, addLink, deleteLink, addColumn, renameColumn, reorderColumn,
+  deleteColumn, boardStats,
+} from "../lib/board";
 
 const KEY_STORAGE = "gokuBoardKey";
 const VIEWS = [
@@ -102,8 +108,18 @@ export default function App() {
 
   useEffect(() => { fetchBoard(boardKey); /* eslint-disable-next-line */ }, [boardKey]);
 
+  // `mutate` runs the same pure lib/board.js function locally so the UI updates
+  // instantly, instead of waiting on the round trip to /api/state.
   const api = useCallback(
-    async (action, payload) => {
+    async (action, payload, mutate) => {
+      if (mutate) {
+        setBoard((prev) => {
+          if (!prev) return prev;
+          const next = mutate(structuredClone(prev));
+          setStats(boardStats(next));
+          return next;
+        });
+      }
       try {
         const res = await fetch("/api/state", {
           method: "POST",
@@ -116,10 +132,11 @@ export default function App() {
         return data;
       } catch {
         setError("Something went wrong saving that change.");
+        if (mutate) fetchBoard(boardKey);
         return null;
       }
     },
-    [boardKey, applyBoard]
+    [boardKey, applyBoard, fetchBoard]
   );
 
   useEffect(() => {
@@ -165,20 +182,20 @@ export default function App() {
   }, [tasksByColumn, filterPriority, sortByPriority]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleMoveDone = useCallback((id, x, y) => {
-    api("moveTask", { id, column: "done" });
+    api("moveTask", { id, column: "done" }, (b) => moveTask(b, id, "done"));
     smallCelebrate(x, y);
   }, [api, smallCelebrate]);
 
   const handleArchive = useCallback((id) => {
-    api("moveTask", { id, column: "archive" });
+    api("moveTask", { id, column: "archive" }, (b) => moveTask(b, id, "archive"));
   }, [api]);
 
   const handleRevert = useCallback((id) => {
-    api("moveTask", { id, column: "todo" });
+    api("moveTask", { id, column: "todo" }, (b) => moveTask(b, id, "todo"));
   }, [api]);
 
   const handleRestore = useCallback((id) => {
-    api("moveTask", { id, column: "done" });
+    api("moveTask", { id, column: "done" }, (b) => moveTask(b, id, "done"));
   }, [api]);
 
   const handleReorder = useCallback((draggedId, targetId, pos, colId) => {
@@ -197,10 +214,10 @@ export default function App() {
     if (!draggedTask) return;
     if (draggedTask.column !== colId) {
       const wasDone = draggedTask.column === "done";
-      api("moveTask", { id: draggedId, column: colId, order: newOrder });
+      api("moveTask", { id: draggedId, column: colId, order: newOrder }, (b) => moveTask(b, draggedId, colId, newOrder));
       if (colId === "done" && !wasDone) smallCelebrate();
     } else {
-      api("updateTask", { id: draggedId, patch: { order: newOrder } });
+      api("updateTask", { id: draggedId, patch: { order: newOrder } }, (b) => updateTask(b, draggedId, { order: newOrder }));
     }
   }, [board, tasksByColumn, api, smallCelebrate]);
 
@@ -209,7 +226,7 @@ export default function App() {
     const task = board?.tasks[id];
     if (!task || task.column === toCol) return;
     const wasDone = task.column === "done";
-    api("moveTask", { id, column: toCol });
+    api("moveTask", { id, column: toCol }, (b) => moveTask(b, id, toCol));
     if (toCol === "done" && !wasDone) smallCelebrate(x, y);
   }, [board, api, smallCelebrate]);
 
@@ -221,16 +238,46 @@ export default function App() {
       const allAfter = after.length > 0 && after.every((c) => c.done);
       if (allAfter && !allBefore) smallCelebrate();
     }
-    api("toggleChecklistItem", { taskId, itemId });
+    api("toggleChecklistItem", { taskId, itemId }, (b) => toggleChecklistItem(b, taskId, itemId));
   }, [board, api, smallCelebrate]);
-  const handleAddCheck = (taskId, text) => api("addChecklistItem", { taskId, text });
-  const handleDelCheck = (taskId, itemId) => api("deleteChecklistItem", { taskId, itemId });
-  const handleAddLink = (taskId, label, url) => api("addLink", { taskId, label, url });
-  const handleDelLink = (taskId, linkId) => api("deleteLink", { taskId, linkId });
-  const handleUpdateTask = (id, patch) => api("updateTask", { id, patch });
-  const handleMoveTo = (id, column) => api("moveTask", { id, column });
-  const handleDelete = (id) => { api("deleteTask", { id }); setOpenTaskId(null); };
-  const handleCreate = (payload) => { api("addTask", payload); setAddingTo(null); };
+  const handleAddCheck = (taskId, text) => api("addChecklistItem", { taskId, text }, (b) => addChecklistItem(b, taskId, text));
+  const handleDelCheck = (taskId, itemId) => api("deleteChecklistItem", { taskId, itemId }, (b) => deleteChecklistItem(b, taskId, itemId));
+  const handleAddLink = (taskId, label, url) => api("addLink", { taskId, label, url }, (b) => addLink(b, taskId, label, url));
+  const handleDelLink = (taskId, linkId) => api("deleteLink", { taskId, linkId }, (b) => deleteLink(b, taskId, linkId));
+  const handleUpdateTask = (id, patch) => api("updateTask", { id, patch }, (b) => updateTask(b, id, patch));
+  const handleMoveTo = (id, column) => api("moveTask", { id, column }, (b) => moveTask(b, id, column));
+  const handleDelete = (id) => { api("deleteTask", { id }, (b) => deleteTask(b, id)); setOpenTaskId(null); };
+  const handleCreate = (payload) => { api("addTask", payload, (b) => addTask(b, payload)); setAddingTo(null); };
+
+  const handleAddColumn = useCallback((title) => api("addColumn", { title }, (b) => addColumn(b, title)), [api]);
+  const handleRenameColumn = useCallback((id, title) => api("renameColumn", { id, title }, (b) => renameColumn(b, id, title)), [api]);
+  const handleReorderColumn = useCallback((draggedId, targetId) => {
+    const toIndex = (board?.columns || []).findIndex((c) => c.id === targetId);
+    if (toIndex === -1 || draggedId === targetId) return;
+    api("reorderColumn", { id: draggedId, toIndex }, (b) => reorderColumn(b, draggedId, toIndex));
+  }, [board, api]);
+  const handleDeleteColumn = useCallback((id) => api("deleteColumn", { id }, (b) => deleteColumn(b, id)), [api]);
+
+  const dragAutoScrollRef = useRef(null);
+  const handleCardDragStart = useCallback(() => {
+    if (dragAutoScrollRef.current) return;
+    const EDGE = 90, MAX_SPEED = 22;
+    const onWindowDragOver = (e) => {
+      const y = e.clientY, h = window.innerHeight;
+      if (y < EDGE) window.scrollBy(0, -MAX_SPEED * (1 - y / EDGE));
+      else if (y > h - EDGE) window.scrollBy(0, MAX_SPEED * (1 - (h - y) / EDGE));
+    };
+    // capture phase: card-slot drag handlers call stopPropagation, so a bubble
+    // listener would never see the event while dragging over a card.
+    window.addEventListener("dragover", onWindowDragOver, true);
+    dragAutoScrollRef.current = onWindowDragOver;
+  }, []);
+  const handleCardDragEnd = useCallback(() => {
+    if (dragAutoScrollRef.current) {
+      window.removeEventListener("dragover", dragAutoScrollRef.current, true);
+      dragAutoScrollRef.current = null;
+    }
+  }, []);
 
   // payments + events
   const payUpdate = (id, patch) => api("updatePayment", { id, patch });
@@ -354,8 +401,15 @@ export default function App() {
                 onRevert={handleRevert}
                 onReorder={handleReorder}
                 posButtons={!sortByPriority}
+                onDragStart={handleCardDragStart}
+                onDragEnd={handleCardDragEnd}
+                onRenameColumn={handleRenameColumn}
+                onDeleteColumn={handleDeleteColumn}
+                onReorderColumn={handleReorderColumn}
+                deletable={col.id !== "todo" && col.id !== "done"}
               />
             ))}
+            <AddColumn onAdd={handleAddColumn} />
           </div>
         </>
       ) : view === "payments" ? (
@@ -394,6 +448,7 @@ export default function App() {
       {openTask && (
         <CardModal
           task={openTask}
+          columns={board.columns}
           onClose={() => setOpenTaskId(null)}
           onUpdate={handleUpdateTask}
           onMove={handleMoveTo}
