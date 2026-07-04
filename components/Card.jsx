@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useState } from "react";
 
 function fmtDue(d) {
   if (!d) return null;
@@ -12,6 +12,7 @@ function fmtDue(d) {
 }
 
 function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, onRevert, onMoveTop, onMoveUp, onMoveDown, onDragStart, onDragEnd }) {
+  const [checklistOpen, setChecklistOpen] = useState(false);
   const isDone = task.column === "done" || task.column === "archive";
   const isArchived = task.column === "archive";
   const checks = task.checklist || [];
@@ -55,14 +56,23 @@ function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, o
 
       {checks.length > 0 && (
         <>
-          <div className="checklist" onClick={(e) => e.stopPropagation()}>
-            {checks.map((c) => (
-              <label key={c.id} className={`check ${c.done ? "done" : ""}`}>
-                <input type="checkbox" checked={c.done} onChange={() => onToggleCheck(task.id, c.id)} />
-                <span>{c.text}</span>
-              </label>
-            ))}
-          </div>
+          <button
+            type="button"
+            className="checklist-toggle"
+            onClick={(e) => { e.stopPropagation(); setChecklistOpen((v) => !v); }}
+          >
+            <span>{checklistOpen ? "▾" : "▸"} ✓ {doneCount}/{checks.length}</span>
+          </button>
+          {checklistOpen && (
+            <div className="checklist" onClick={(e) => e.stopPropagation()}>
+              {checks.map((c) => (
+                <label key={c.id} className={`check ${c.done ? "done" : ""}`}>
+                  <input type="checkbox" checked={c.done} onChange={() => onToggleCheck(task.id, c.id)} />
+                  <span>{c.text}</span>
+                </label>
+              ))}
+            </div>
+          )}
           <div className="check-progress"><div style={{ width: `${pct}%` }} /></div>
         </>
       )}
@@ -71,7 +81,6 @@ function Card({ task, onOpen, onToggleCheck, onMoveDone, onArchive, onRestore, o
         {task.dueDate && (
           <span className={`due ${overdue ? "overdue" : ""}`}>{overdue ? "⚑ " : "📅 "}{fmtDue(task.dueDate)}</span>
         )}
-        {checks.length > 0 && <span>✓ {doneCount}/{checks.length}</span>}
         {links.length > 0 && <span>🔗 {links.length}</span>}
         {task.notes && <span title="Has a description">≡</span>}
         {task.week && <span className="week-tag">{task.week}</span>}

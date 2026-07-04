@@ -385,6 +385,18 @@ html, body {
 .week-tag { margin-left: auto; opacity: 0.7; }
 
 /* checklist */
+.checklist-toggle {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 8px 0 0;
+}
+.checklist-toggle:hover { color: var(--text); }
 .checklist { margin-top: 9px; display: flex; flex-direction: column; gap: 5px; }
 .check {
   display: flex;
