@@ -17,6 +17,7 @@ export default function CardModal({
   onDelete,
   onToggleCheck,
   onAddCheck,
+  onUpdateCheck,
   onDelCheck,
   onAddLink,
   onDelLink,
@@ -26,6 +27,8 @@ export default function CardModal({
   const [newCheck, setNewCheck] = useState("");
   const [linkUrl, setLinkUrl] = useState("");
   const [linkLabel, setLinkLabel] = useState("");
+  const [editingCheckId, setEditingCheckId] = useState(null);
+  const [editingCheckText, setEditingCheckText] = useState("");
 
   useEffect(() => {
     setTitle(task.title);
@@ -64,6 +67,15 @@ export default function CardModal({
     const v = newCheck.trim();
     if (v) onAddCheck(task.id, v);
     setNewCheck("");
+  }
+  function startEditCheck(item) {
+    setEditingCheckId(item.id);
+    setEditingCheckText(item.text);
+  }
+  function commitEditCheck() {
+    const v = editingCheckText.trim();
+    if (v) onUpdateCheck(task.id, editingCheckId, v);
+    setEditingCheckId(null);
   }
   function submitLink(e) {
     e.preventDefault();
@@ -152,7 +164,21 @@ export default function CardModal({
             {checks.map((c) => (
               <div key={c.id} className={`check ${c.done ? "done" : ""}`}>
                 <input type="checkbox" checked={c.done} onChange={() => onToggleCheck(task.id, c.id)} />
-                <span style={{ flex: 1 }}>{c.text}</span>
+                {editingCheckId === c.id ? (
+                  <input
+                    className="input check-edit-input"
+                    autoFocus
+                    value={editingCheckText}
+                    onChange={(e) => setEditingCheckText(e.target.value)}
+                    onBlur={commitEditCheck}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") e.currentTarget.blur();
+                      if (e.key === "Escape") { e.stopPropagation(); setEditingCheckId(null); }
+                    }}
+                  />
+                ) : (
+                  <span style={{ flex: 1 }} title="Click to edit" onClick={() => startEditCheck(c)}>{c.text}</span>
+                )}
                 <button className="mini-del" onClick={() => onDelCheck(task.id, c.id)} aria-label="Remove">×</button>
               </div>
             ))}
