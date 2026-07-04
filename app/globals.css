@@ -199,6 +199,33 @@ html, body {
 .toolbar-pill.on.tp-low  { background: rgba(52, 214, 255, 0.12); border-color: rgba(52, 214, 255, 0.4); color: var(--ki); }
 .toolbar-pill.on.tp-sort { background: rgba(176, 107, 255, 0.15); border-color: rgba(176, 107, 255, 0.45); color: var(--purple); }
 
+.zoom-control { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+.zoom-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+}
+.zoom-btn:hover:not(:disabled) { border-color: var(--orange); }
+.zoom-btn:disabled { opacity: 0.35; cursor: default; }
+.zoom-pct {
+  min-width: 44px;
+  text-align: center;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0 2px;
+}
+.zoom-pct:hover { color: var(--text); }
+
 /* ---------- board ---------- */
 /* flex (not a fixed-column grid) so any number of columns fit: they share the
    width evenly until there are too many, then the row scrolls horizontally. */
@@ -795,6 +822,7 @@ html, body {
 .view-pane { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); backdrop-filter: blur(6px); }
 .view-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
 .view-head h2 { margin: 0; font-size: 18px; }
+.view-head-actions { display: flex; align-items: center; gap: 14px; }
 .closed-head { margin: 18px 0 10px; font-size: 14px; color: var(--muted); }
 
 /* payments */
