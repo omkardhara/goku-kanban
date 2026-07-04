@@ -9,7 +9,7 @@ import CardModal from "./CardModal";
 import PaymentsView from "./PaymentsView";
 import CalendarView from "./CalendarView";
 import Backgrounds from "./Backgrounds";
-import { TIERS, tierFor, powerLevel } from "../lib/tiers";
+import { TIERS, tierFor, powerLevel, completedUnits } from "../lib/tiers";
 import { burstAt, shakeScreen } from "../lib/fx";
 import AddColumn from "./AddColumn";
 import {
@@ -75,7 +75,7 @@ export default function App() {
   const applyBoard = useCallback((data) => {
     setBoard(data);
     setStats(data.stats);
-    const newTier = tierFor(data.stats.ratio);
+    const newTier = tierFor(completedUnits(data.stats), data.stats.ratio);
     const newPower = powerLevel(data.stats);
     if (initialised.current) {
       if (newTier > prevTier.current) bigCelebrate(newTier);
@@ -315,7 +315,7 @@ export default function App() {
   }
 
   const ratio = stats?.ratio || 0;
-  const tier = tierFor(ratio);
+  const tier = tierFor(completedUnits(stats), ratio);
   const openTask = openTaskId && board ? board.tasks[openTaskId] : null;
 
   return (
