@@ -12,6 +12,7 @@ import Backgrounds from "./Backgrounds";
 import { TIERS, tierFor, powerLevel, completedUnits } from "../lib/tiers";
 import { burstAt, shakeScreen } from "../lib/fx";
 import AddColumn from "./AddColumn";
+import ZoomControl from "./ZoomControl";
 import {
   moveTask, updateTask, deleteTask, addTask, toggleChecklistItem, addChecklistItem,
   updateChecklistItem, deleteChecklistItem, addLink, deleteLink, addColumn, renameColumn,
@@ -19,6 +20,8 @@ import {
 } from "../lib/board";
 
 const KEY_STORAGE = "gokuBoardKey";
+const BOARD_ZOOM_STORAGE = "gokuBoardZoom";
+const PAYMENTS_ZOOM_STORAGE = "gokuPaymentsZoom";
 const VIEWS = [
   { id: "board", label: "Board" },
   { id: "payments", label: "Payments" },
@@ -42,6 +45,8 @@ export default function App() {
   const [displayPower, setDisplayPower] = useState(0);
   const [filterPriority, setFilterPriority] = useState(null);
   const [sortByPriority, setSortByPriority] = useState(false);
+  const [boardZoomState, setBoardZoomState] = useState(1);
+  const [paymentsZoomState, setPaymentsZoomState] = useState(1);
 
   const prevTier = useRef(0);
   const prevPower = useRef(0);
@@ -50,6 +55,19 @@ export default function App() {
   useEffect(() => {
     const saved = typeof window !== "undefined" ? window.localStorage.getItem(KEY_STORAGE) : "";
     setBoardKey(saved || "");
+    const bz = parseFloat(window.localStorage.getItem(BOARD_ZOOM_STORAGE));
+    if (!Number.isNaN(bz)) setBoardZoomState(bz);
+    const pz = parseFloat(window.localStorage.getItem(PAYMENTS_ZOOM_STORAGE));
+    if (!Number.isNaN(pz)) setPaymentsZoomState(pz);
+  }, []);
+
+  const setBoardZoom = useCallback((z) => {
+    setBoardZoomState(z);
+    window.localStorage.setItem(BOARD_ZOOM_STORAGE, String(z));
+  }, []);
+  const setPaymentsZoom = useCallback((z) => {
+    setPaymentsZoomState(z);
+    window.localStorage.setItem(PAYMENTS_ZOOM_STORAGE, String(z));
   }, []);
 
   function showToast(big, sub) {
@@ -386,8 +404,9 @@ export default function App() {
               className={`toolbar-pill${sortByPriority ? " on tp-sort" : ""}`}
               onClick={() => setSortByPriority(!sortByPriority)}
             >↕ Sort by priority</button>
+            <ZoomControl zoom={boardZoomState} onChange={setBoardZoom} />
           </div>
-          <div className="board">
+          <div className="board" style={{ zoom: boardZoomState }}>
             {board.columns.map((col) => (
               <Column
                 key={col.id}
@@ -414,7 +433,7 @@ export default function App() {
           </div>
         </>
       ) : view === "payments" ? (
-        <PaymentsView payments={board.payments} onUpdate={payUpdate} onDelete={payDelete} onAdd={payAdd} />
+        <PaymentsView payments={board.payments} onUpdate={payUpdate} onDelete={payDelete} onAdd={payAdd} zoom={paymentsZoomState} onZoomChange={setPaymentsZoom} />
       ) : view === "archive" ? (
         <div className="archive-view">
           <div className="archive-head">

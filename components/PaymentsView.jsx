@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ZoomControl from "./ZoomControl";
 
 const STATUSES = [
   { id: "pending", label: "Pending" },
@@ -38,7 +39,7 @@ function PaymentCard({ p, onUpdate, onDelete }) {
   );
 }
 
-export default function PaymentsView({ payments = [], onUpdate, onDelete, onAdd }) {
+export default function PaymentsView({ payments = [], onUpdate, onDelete, onAdd, zoom = 1, onZoomChange }) {
   const [adding, setAdding] = useState(false);
   const [brand, setBrand] = useState("");
   const [ptype, setPtype] = useState("");
@@ -59,9 +60,12 @@ export default function PaymentsView({ payments = [], onUpdate, onDelete, onAdd 
     <div className="view-pane">
       <div className="view-head">
         <h2>Payments & chase items</h2>
-        <button className="btn btn-primary" onClick={() => setAdding((v) => !v)}>
-          {adding ? "Cancel" : "+ Add payment"}
-        </button>
+        <div className="view-head-actions">
+          <ZoomControl zoom={zoom} onChange={onZoomChange} />
+          <button className="btn btn-primary" onClick={() => setAdding((v) => !v)}>
+            {adding ? "Cancel" : "+ Add payment"}
+          </button>
+        </div>
       </div>
 
       {adding && (
@@ -75,7 +79,7 @@ export default function PaymentsView({ payments = [], onUpdate, onDelete, onAdd 
       {active.length === 0 && closed.length === 0 ? (
         <p className="muted">No payment items yet. They arrive with your weekly run, or add one above.</p>
       ) : (
-        <>
+        <div style={{ zoom }}>
           <div className="pay-grid">
             {active.map((p) => (
               <PaymentCard key={p.id} p={p} onUpdate={onUpdate} onDelete={onDelete} />
@@ -91,7 +95,7 @@ export default function PaymentsView({ payments = [], onUpdate, onDelete, onAdd 
               </div>
             </>
           )}
-        </>
+        </div>
       )}
     </div>
   );
