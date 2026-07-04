@@ -207,7 +207,18 @@ html, body {
   align-items: start;
 }
 @media (max-width: 860px) {
-  .board { grid-template-columns: 1fr; }
+  .board {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(82%, 320px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+  .column {
+    scroll-snap-align: start;
+  }
 }
 
 .column {
