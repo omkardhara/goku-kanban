@@ -139,11 +139,29 @@ async function main() {
     return;
   }
 
-  // Only import open (todo) tasks — skip done/checked and payment-flagged items
-  // (payment-flagged tasks are already tracked in the payments view)
+  // Build a set of significant words from payment brand names for cross-referencing
+  const brandWords = new Set(
+    payments.flatMap((p) =>
+      p.brand.toLowerCase()
+        .split(/[\s,/()\-&]+/)
+        .filter((w) => w.length > 3 && !/^(and|the|for|with|from|books|team)$/.test(w))
+    )
+  );
+  const FOLLOWUP_VERB = /\b(chase|chasing|follow.?up|confirm|watch|monitor|escalate|ping|remind|check)\b/i;
+
+  const isPaymentRelated = (t) => {
+    if ((t.flags || []).includes("payments")) return true;
+    // Also catch tasks that mention a payment brand + a follow-up action verb
+    const titleLow = t.title.toLowerCase();
+    const hasBrand = brandWords.size > 0 && [...brandWords].some((w) => titleLow.includes(w));
+    return hasBrand && FOLLOWUP_VERB.test(t.title);
+  };
+
+  // Only import open (todo) tasks — skip done/checked and payment-related items
+  // (payment tasks are already tracked in the payments view)
   const candidates = parsed
     .filter((t) => t.column === "todo")
-    .filter((t) => !(t.flags || []).includes("payments"))
+    .filter((t) => !isPaymentRelated(t))
     .map((t) => ({ ...t, id: `wk_${week}_${slug(t.title)}`, source: "weekly", week }));
 
   if (has("--dry")) {
