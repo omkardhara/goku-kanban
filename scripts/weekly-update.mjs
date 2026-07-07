@@ -139,9 +139,11 @@ async function main() {
     return;
   }
 
-  // Only import open (todo) tasks — skip anything already marked done/checked in the doc
+  // Only import open (todo) tasks — skip done/checked and payment-flagged items
+  // (payment-flagged tasks are already tracked in the payments view)
   const candidates = parsed
     .filter((t) => t.column === "todo")
+    .filter((t) => !(t.flags || []).includes("payments"))
     .map((t) => ({ ...t, id: `wk_${week}_${slug(t.title)}`, source: "weekly", week }));
 
   if (has("--dry")) {
