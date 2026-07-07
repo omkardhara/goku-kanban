@@ -1,5 +1,5 @@
 {
-  "week": "2026-W27",
+  "week": "2026-W28",
   "tasks": [
     {
       "id": "wk_2026-W26_welcome",
@@ -213,6 +213,203 @@
       "id": "wk_2026-W27_lolla-27-x-nivea-empanelment-you-are-lead-spoc",
       "source": "weekly",
       "week": "2026-W27"
+    },
+    {
+      "title": "Chase Yukta/BMS Finance to confirm the two Nivea payments Omnicom",
+      "notes": "claims, then reply to Jenita",
+      "priority": null,
+      "flags": [
+        "bms",
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_chase-yukta-bms-finance-to-confirm-the-two-nivea-payments-om",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Write back to H&M clarifying BMS only needs a formal confirmation email",
+      "notes": "on the logo, not their sign-off",
+      "priority": null,
+      "flags": [
+        "bms",
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_write-back-to-h-m-clarifying-bms-only-needs-a-formal-confirm",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link (asked Jun 30, still",
+      "notes": "open)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_send-allan-the-current-cs-team-onboarding-doc-link-asked-jun",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Chase Vaibhav (Diageo) and Yukta again on books closure and the 4 John",
+      "notes": "Mayer POs",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_chase-vaibhav-diageo-and-yukta-again-on-books-closure-and-th",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Watch for Kotak's ledger reconciliation on the Rs 22,36,249 received",
+      "notes": "(Toral leading)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_watch-for-kotak-s-ledger-reconciliation-on-the-rs-22-36-249-",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Chase Priya (Sponco) if no reply on John Mayer paid-ticket billing",
+      "notes": "details",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_chase-priya-sponco-if-no-reply-on-john-mayer-paid-ticket-bil",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Chase Jay/Ronak (Sunburn/Tribevibe) again if no response today on the",
+      "notes": "Alcobev deal split report",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": "2026-07-07",
+      "column": "todo",
+      "id": "wk_2026-W28_chase-jay-ronak-sunburn-tribevibe-again-if-no-response-today",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Remove the SHEIN row from the Sales Target Tracker 26-27 (Allan, Jun 25)",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_remove-the-shein-row-from-the-sales-target-tracker-26-27-all",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Confirm Krishna has access to the Pending Payments sheet (requested Jun",
+      "notes": "25)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_confirm-krishna-has-access-to-the-pending-payments-sheet-req",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Monitor Ed Sheeran/GroupM incentive letter signature (Krishna leading,",
+      "notes": "Legal looped)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_monitor-ed-sheeran-groupm-incentive-letter-signature-krishna",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Chase Sanjana on ITC/Jagran/PMC (silent 5 to 6 weeks)",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_chase-sanjana-on-itc-jagran-pmc-silent-5-to-6-weeks",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Chase or escalate MIX/Oaksmith (Beam Suntory) further",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_chase-or-escalate-mix-oaksmith-beam-suntory-further",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Coordinate with Krishna on the Lolla 27 x Nivea empanelment scope split",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_coordinate-with-krishna-on-the-lolla-27-x-nivea-empanelment-",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Log Yukta's 4 invoice/PO/PTP numbers in the payment tracker, confirm",
+      "notes": "brand mapping",
+      "priority": null,
+      "flags": [
+        "client",
+        "payments"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_log-yukta-s-4-invoice-po-ptp-numbers-in-the-payment-tracker-",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Send feedback on Lolla 27 timelines once Toral confirms pre-sale dates",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_send-feedback-on-lolla-27-timelines-once-toral-confirms-pre-",
+      "source": "weekly",
+      "week": "2026-W28"
+    },
+    {
+      "title": "Review the F&B x Brands and Brand Partnerships agenda docs before",
+      "notes": "Thursday's meetings",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W28_review-the-f-b-x-brands-and-brand-partnerships-agenda-docs-b",
+      "source": "weekly",
+      "week": "2026-W28"
     }
   ],
   "payments": [
