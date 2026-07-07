@@ -194,7 +194,11 @@ async function main() {
 
   if (live && !has("--no-live") && events.length) {
     try {
-      await postLive("setEvents", { events });
+      // Tag each event with this week + a stable id so the live board can match it
+      // against what's already there and preserve any manual reschedule/relink
+      // instead of overwriting it.
+      const taggedEvents = events.map((e) => ({ ...e, week, id: `ev_${week}_${slug(e.title)}` }));
+      await postLive("mergeEvents", { week, events: taggedEvents });
       console.log(`✓ Calendar synced: ${events.length} meetings.`);
     } catch (e) {
       console.warn("⚠ calendar sync failed:", e.message);

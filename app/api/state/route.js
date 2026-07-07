@@ -5,7 +5,7 @@ import {
   bootstrapBoard, normalize, boardStats, addTask, updateTask, moveTask, deleteTask,
   toggleChecklistItem, addChecklistItem, updateChecklistItem, deleteChecklistItem, addLink, deleteLink,
   setPayments, mergePayments, addPayment, updatePayment, deletePayment, setEvents, addEvent,
-  deleteEvent, mergeWeekly, addColumn, renameColumn, reorderColumn, deleteColumn,
+  updateEvent, deleteEvent, mergeEvents, mergeWeekly, addColumn, renameColumn, reorderColumn, deleteColumn,
 } from "../../../lib/board";
 
 export const dynamic = "force-dynamic";
@@ -48,7 +48,9 @@ export async function POST(request) {
     case "updatePayment": board = updatePayment(board, payload.id, payload.patch || {}); break;
     case "deletePayment": board = deletePayment(board, payload.id); break;
     case "setEvents": board = setEvents(board, payload.events || []); break;
+    case "mergeEvents": board = mergeEvents(board, payload.week, payload.events || []); break;
     case "addEvent": board = addEvent(board, payload); break;
+    case "updateEvent": board = updateEvent(board, payload.id, payload.patch || {}); break;
     case "deleteEvent": board = deleteEvent(board, payload.id); break;
     case "addColumn": board = addColumn(board, payload.title); break;
     case "renameColumn": board = renameColumn(board, payload.id, payload.title); break;
@@ -58,7 +60,7 @@ export async function POST(request) {
       const res = mergeWeekly(board, payload.week, payload.tasks || []);
       board = res.board; extra.added = res.added;
       if (payload.payments) board = setPayments(board, payload.payments);
-      if (payload.events) board = setEvents(board, payload.events);
+      if (payload.events) board = mergeEvents(board, payload.week, payload.events);
       break;
     }
     case "replaceBoard": if (payload.board) board = normalize(payload.board); break;
