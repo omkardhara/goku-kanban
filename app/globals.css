@@ -842,16 +842,38 @@ html, body {
 .pay-status { margin-top: 10px; width: 100%; }
 
 /* calendar */
+.cal-hint { font-size: 12px; margin: -6px 0 14px; }
+.cal-week { display: grid; grid-template-columns: repeat(7, minmax(150px, 1fr)); gap: 10px; margin-bottom: 18px; overflow-x: auto; }
+@media (max-width: 860px) {
+  .cal-week { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; scroll-snap-type: x mandatory; }
+  .cal-day { scroll-snap-align: start; }
+}
 .cal-days { display: flex; flex-direction: column; gap: 14px; }
+.cal-day {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  min-height: 90px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.cal-day-dragover { border-color: var(--orange); background: rgba(255,155,33,0.08); }
+.cal-day-loose { min-height: 0; }
+.cal-day-empty { font-size: 12px; padding: 2px 0 4px; }
 .cal-day-label { font-weight: 800; font-size: 14px; color: var(--gold); margin-bottom: 8px; letter-spacing: 0.3px; }
-.cal-event { background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
-.cal-event-top { display: flex; gap: 10px; align-items: center; }
+.cal-event { background: rgba(255,255,255,0.04); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; cursor: grab; }
+.cal-event.dragging { opacity: 0.45; }
+.cal-event-top { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .cal-time { font-weight: 700; color: var(--ki); font-size: 12.5px; min-width: 64px; }
 .cal-title { font-weight: 600; flex: 1; }
 .cal-title-link { color: inherit; text-decoration: none; }
 .cal-title-link:hover { color: var(--ki); text-decoration: underline; }
 .cal-loc, .cal-att, .cal-bring { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .cal-bring { color: var(--text); }
+.mini-act { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 13px; line-height: 1; padding: 2px 5px; border-radius: 6px; }
+.mini-act:hover { color: var(--text); background: rgba(255,255,255,0.08); }
+.cal-edit { display: flex; flex-direction: column; gap: 6px; }
+.cal-edit-actions { display: flex; gap: 8px; margin-top: 4px; }
 
 /* card detail modal */
 .modal-lg { max-width: 560px; max-height: 88vh; overflow-y: auto; position: relative; }

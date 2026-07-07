@@ -16,7 +16,7 @@ import ZoomControl from "./ZoomControl";
 import {
   moveTask, updateTask, deleteTask, addTask, toggleChecklistItem, addChecklistItem,
   updateChecklistItem, deleteChecklistItem, addLink, deleteLink, addColumn, renameColumn,
-  reorderColumn, deleteColumn, boardStats,
+  reorderColumn, deleteColumn, updateEvent, boardStats,
 } from "../lib/board";
 
 const KEY_STORAGE = "gokuBoardKey";
@@ -304,6 +304,7 @@ export default function App() {
   const payAdd = (p) => api("addPayment", p);
   const evDelete = (id) => api("deleteEvent", { id });
   const evAdd = (e) => api("addEvent", e);
+  const evUpdate = (id, patch) => api("updateEvent", { id, patch }, (b) => updateEvent(b, id, patch));
 
   function submitKey(e) {
     e.preventDefault();
@@ -459,7 +460,7 @@ export default function App() {
           )}
         </div>
       ) : (
-        <CalendarView events={board.events} onDelete={evDelete} onAdd={evAdd} />
+        <CalendarView events={board.events} onDelete={evDelete} onAdd={evAdd} onUpdate={evUpdate} />
       )}
 
       {addingTo && (
