@@ -24,9 +24,13 @@ function groupByDay(events) {
   return groups;
 }
 
+function gcalSearchUrl(title) {
+  return "https://calendar.google.com/calendar/r/search?q=" + encodeURIComponent(title);
+}
+
 export default function CalendarView({ events = [], onDelete, onAdd }) {
   const [adding, setAdding] = useState(false);
-  const [form, setForm] = useState({ day: "", time: "", title: "", location: "", bring: "" });
+  const [form, setForm] = useState({ day: "", time: "", title: "", location: "", bring: "", link: "" });
 
   const groups = groupByDay(events);
 
@@ -34,7 +38,7 @@ export default function CalendarView({ events = [], onDelete, onAdd }) {
     e.preventDefault();
     if (!form.title.trim()) return;
     onAdd({ ...form, title: form.title.trim() });
-    setForm({ day: "", time: "", title: "", location: "", bring: "" });
+    setForm({ day: "", time: "", title: "", location: "", bring: "", link: "" });
     setAdding(false);
   }
 
@@ -53,6 +57,7 @@ export default function CalendarView({ events = [], onDelete, onAdd }) {
           <input className="input" placeholder="Time" value={form.time} onChange={(e) => setForm({ ...form, time: e.target.value })} />
           <input className="input" placeholder="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} autoFocus />
           <input className="input" placeholder="Location" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
+          <input className="input" placeholder="Meeting link (optional)" value={form.link} onChange={(e) => setForm({ ...form, link: e.target.value })} />
           <input className="input" placeholder="Bring / prep" value={form.bring} onChange={(e) => setForm({ ...form, bring: e.target.value })} />
           <button className="btn btn-primary" type="submit">Add</button>
         </form>
@@ -69,7 +74,13 @@ export default function CalendarView({ events = [], onDelete, onAdd }) {
                 <div key={e.id} className="cal-event">
                   <div className="cal-event-top">
                     {e.time && <span className="cal-time">{e.time}</span>}
-                    <span className="cal-title">{e.title}</span>
+                    <a
+                      className="cal-title cal-title-link"
+                      href={e.link || gcalSearchUrl(e.title)}
+                      target="_blank"
+                      rel="noreferrer"
+                      title={e.link ? "Open meeting link" : "Search in Google Calendar"}
+                    >{e.title}</a>
                     <button className="mini-del" onClick={() => { if (window.confirm('Delete this meeting?')) onDelete(e.id); }} aria-label="Remove">×</button>
                   </div>
                   {e.location && <div className="cal-loc">📍 {e.location}</div>}
