@@ -14,6 +14,7 @@ function Column({
   onAddCard,
   onMoveDone,
   onArchive,
+  onArchiveAll,
   onRevert,
   onReorder,
   posButtons,
@@ -103,6 +104,15 @@ function Column({
           </span>
         )}
         <span className="col-count">{tasks.length}</span>
+        {isDone && tasks.length > 0 && (
+          <button
+            className="col-archive-all"
+            title="Archive all done cards"
+            onClick={() => {
+              if (window.confirm(`Archive all ${tasks.length} done cards?`)) onArchiveAll();
+            }}
+          >↓ Archive all</button>
+        )}
         {deletable && (
           <button
             className="col-del"

@@ -208,6 +208,15 @@ export default function App() {
     api("moveTask", { id, column: "archive" }, (b) => moveTask(b, id, "archive"));
   }, [api]);
 
+  const handleArchiveAll = useCallback(() => {
+    api("archiveDone", {}, (b) => {
+      for (const t of Object.values(b.tasks)) {
+        if (t.column === "done") { t.column = "archive"; }
+      }
+      return b;
+    });
+  }, [api]);
+
   const handleRevert = useCallback((id) => {
     api("moveTask", { id, column: "todo" }, (b) => moveTask(b, id, "todo"));
   }, [api]);
@@ -418,6 +427,7 @@ export default function App() {
                 onAddCard={setAddingTo}
                 onMoveDone={handleMoveDone}
                 onArchive={handleArchive}
+                onArchiveAll={handleArchiveAll}
                 onRevert={handleRevert}
                 onReorder={handleReorder}
                 posButtons={!sortByPriority}
