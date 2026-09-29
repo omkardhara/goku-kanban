@@ -15,7 +15,7 @@ import AddColumn from "./AddColumn";
 import ZoomControl from "./ZoomControl";
 import {
   moveTask, updateTask, deleteTask, addTask, toggleChecklistItem, addChecklistItem,
-  updateChecklistItem, deleteChecklistItem, addLink, deleteLink, addColumn, renameColumn,
+  updateChecklistItem, deleteChecklistItem, reorderChecklistItem, addLink, deleteLink, addColumn, renameColumn,
   reorderColumn, deleteColumn, boardStats,
 } from "../lib/board";
 
@@ -270,6 +270,7 @@ export default function App() {
   const handleAddCheck = (taskId, text) => api("addChecklistItem", { taskId, text }, (b) => addChecklistItem(b, taskId, text));
   const handleUpdateCheck = (taskId, itemId, text) => api("updateChecklistItem", { taskId, itemId, text }, (b) => updateChecklistItem(b, taskId, itemId, text));
   const handleDelCheck = (taskId, itemId) => api("deleteChecklistItem", { taskId, itemId }, (b) => deleteChecklistItem(b, taskId, itemId));
+  const handleReorderCheck = (taskId, draggedId, targetId, pos) => api("reorderChecklistItem", { taskId, draggedId, targetId, pos }, (b) => reorderChecklistItem(b, taskId, draggedId, targetId, pos));
   const handleAddLink = (taskId, label, url) => api("addLink", { taskId, label, url }, (b) => addLink(b, taskId, label, url));
   const handleDelLink = (taskId, linkId) => api("deleteLink", { taskId, linkId }, (b) => deleteLink(b, taskId, linkId));
   const handleUpdateTask = (id, patch) => api("updateTask", { id, patch }, (b) => updateTask(b, id, patch));
@@ -487,6 +488,7 @@ export default function App() {
           onAddCheck={handleAddCheck}
           onUpdateCheck={handleUpdateCheck}
           onDelCheck={handleDelCheck}
+          onReorderCheck={handleReorderCheck}
           onAddLink={handleAddLink}
           onDelLink={handleDelLink}
         />

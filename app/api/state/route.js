@@ -3,7 +3,7 @@ import { loadBoard, saveBoard } from "../../../lib/store";
 import { checkKey } from "../../../lib/auth";
 import {
   bootstrapBoard, normalize, boardStats, addTask, updateTask, moveTask, deleteTask,
-  toggleChecklistItem, addChecklistItem, updateChecklistItem, deleteChecklistItem, addLink, deleteLink,
+  toggleChecklistItem, addChecklistItem, updateChecklistItem, deleteChecklistItem, reorderChecklistItem, addLink, deleteLink,
   setPayments, mergePayments, addPayment, updatePayment, deletePayment, setEvents, addEvent,
   deleteEvent, mergeWeekly, addColumn, renameColumn, reorderColumn, deleteColumn, archiveDone,
 } from "../../../lib/board";
@@ -40,6 +40,7 @@ export async function POST(request) {
     case "addChecklistItem": board = addChecklistItem(board, payload.taskId, payload.text); break;
     case "updateChecklistItem": board = updateChecklistItem(board, payload.taskId, payload.itemId, payload.text); break;
     case "deleteChecklistItem": board = deleteChecklistItem(board, payload.taskId, payload.itemId); break;
+    case "reorderChecklistItem": board = reorderChecklistItem(board, payload.taskId, payload.draggedId, payload.targetId, payload.pos); break;
     case "addLink": board = addLink(board, payload.taskId, payload.label, payload.url); break;
     case "deleteLink": board = deleteLink(board, payload.taskId, payload.linkId); break;
     case "setPayments": board = setPayments(board, payload.payments || []); break;

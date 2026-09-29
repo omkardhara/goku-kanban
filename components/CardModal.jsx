@@ -19,6 +19,7 @@ export default function CardModal({
   onAddCheck,
   onUpdateCheck,
   onDelCheck,
+  onReorderCheck,
   onAddLink,
   onDelLink,
 }) {
@@ -29,6 +30,8 @@ export default function CardModal({
   const [linkLabel, setLinkLabel] = useState("");
   const [editingCheckId, setEditingCheckId] = useState(null);
   const [editingCheckText, setEditingCheckText] = useState("");
+  const [dragOverCheckId, setDragOverCheckId] = useState(null);
+  const [dragCheckPos, setDragCheckPos] = useState("after");
 
   useEffect(() => {
     setTitle(task.title);
@@ -162,24 +165,54 @@ export default function CardModal({
           )}
           <div className="checklist">
             {checks.map((c) => (
-              <div key={c.id} className={`check ${c.done ? "done" : ""}`}>
-                <input type="checkbox" checked={c.done} onChange={() => onToggleCheck(task.id, c.id)} />
-                {editingCheckId === c.id ? (
-                  <input
-                    className="input check-edit-input"
-                    autoFocus
-                    value={editingCheckText}
-                    onChange={(e) => setEditingCheckText(e.target.value)}
-                    onBlur={commitEditCheck}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") e.currentTarget.blur();
-                      if (e.key === "Escape") { e.stopPropagation(); setEditingCheckId(null); }
+              <div
+                key={c.id}
+                className={`check-slot${dragOverCheckId === c.id ? ` insert-${dragCheckPos}` : ""}`}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  setDragOverCheckId(c.id);
+                  setDragCheckPos(e.clientY < rect.top + rect.height / 2 ? "before" : "after");
+                }}
+                onDragLeave={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) setDragOverCheckId(null);
+                }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  const pos = dragCheckPos;
+                  setDragOverCheckId(null);
+                  const draggedId = e.dataTransfer.getData("text/plain");
+                  if (draggedId && draggedId !== c.id) onReorderCheck(task.id, draggedId, c.id, pos);
+                }}
+              >
+                <div className={`check ${c.done ? "done" : ""}`}>
+                  <span
+                    className="check-drag-handle"
+                    draggable
+                    title="Drag to reorder"
+                    onDragStart={(e) => {
+                      e.dataTransfer.setData("text/plain", c.id);
+                      e.dataTransfer.effectAllowed = "move";
                     }}
-                  />
-                ) : (
-                  <span style={{ flex: 1 }} title="Click to edit" onClick={() => startEditCheck(c)}>{c.text}</span>
-                )}
-                <button className="mini-del" onClick={() => onDelCheck(task.id, c.id)} aria-label="Remove">×</button>
+                  >⠿</span>
+                  <input type="checkbox" checked={c.done} onChange={() => onToggleCheck(task.id, c.id)} />
+                  {editingCheckId === c.id ? (
+                    <input
+                      className="input check-edit-input"
+                      autoFocus
+                      value={editingCheckText}
+                      onChange={(e) => setEditingCheckText(e.target.value)}
+                      onBlur={commitEditCheck}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") e.currentTarget.blur();
+                        if (e.key === "Escape") { e.stopPropagation(); setEditingCheckId(null); }
+                      }}
+                    />
+                  ) : (
+                    <span style={{ flex: 1 }} title="Click to edit" onClick={() => startEditCheck(c)}>{c.text}</span>
+                  )}
+                  <button className="mini-del" onClick={() => onDelCheck(task.id, c.id)} aria-label="Remove">×</button>
+                </div>
               </div>
             ))}
           </div>
