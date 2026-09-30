@@ -9,6 +9,7 @@ function Column({
   column,
   tasks,
   onDropTask,
+  onNestCard,
   onOpen,
   onToggleCheck,
   onAddCard,
@@ -136,8 +137,9 @@ function Column({
               e.preventDefault();
               e.stopPropagation();
               const rect = e.currentTarget.getBoundingClientRect();
+              const ratio = (e.clientY - rect.top) / rect.height;
               setDragOverId(t.id);
-              setDragPos(e.clientY < rect.top + rect.height / 2 ? "before" : "after");
+              setDragPos(ratio < 0.3 ? "before" : ratio > 0.7 ? "after" : "nest");
             }}
             onDragLeave={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget)) setDragOverId(null);
@@ -149,9 +151,9 @@ function Column({
               const pos = dragPos;
               setDragOverId(null);
               const draggedId = e.dataTransfer.getData("text/plain");
-              if (draggedId && draggedId !== t.id) {
-                onReorder(draggedId, t.id, pos, column.id);
-              }
+              if (!draggedId || draggedId === t.id) return;
+              if (pos === "nest") onNestCard(draggedId, t.id);
+              else onReorder(draggedId, t.id, pos, column.id);
             }}
           >
             <Card

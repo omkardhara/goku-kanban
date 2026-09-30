@@ -14,7 +14,7 @@ import { burstAt, shakeScreen } from "../lib/fx";
 import AddColumn from "./AddColumn";
 import ZoomControl from "./ZoomControl";
 import {
-  moveTask, updateTask, deleteTask, addTask, toggleChecklistItem, addChecklistItem,
+  moveTask, updateTask, deleteTask, addTask, nestCardAsChecklist, toggleChecklistItem, addChecklistItem,
   updateChecklistItem, deleteChecklistItem, reorderChecklistItem, addLink, deleteLink, addColumn, renameColumn,
   reorderColumn, deleteColumn, boardStats,
 } from "../lib/board";
@@ -257,6 +257,10 @@ export default function App() {
     if (toCol === "done" && !wasDone) smallCelebrate(x, y);
   }, [board, api, smallCelebrate]);
 
+  const handleNestCard = useCallback((draggedId, targetId) => {
+    api("nestCard", { draggedId, targetId }, (b) => nestCardAsChecklist(b, draggedId, targetId));
+  }, [api]);
+
   const handleToggleCheck = useCallback((taskId, itemId) => {
     const task = board?.tasks[taskId];
     if (task) {
@@ -423,6 +427,7 @@ export default function App() {
                 column={col}
                 tasks={displayTasksByColumn[col.id] || []}
                 onDropTask={handleDrop}
+                onNestCard={handleNestCard}
                 onOpen={setOpenTaskId}
                 onToggleCheck={handleToggleCheck}
                 onAddCard={setAddingTo}

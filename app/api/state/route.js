@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { loadBoard, saveBoard } from "../../../lib/store";
 import { checkKey } from "../../../lib/auth";
 import {
-  bootstrapBoard, normalize, boardStats, addTask, updateTask, moveTask, deleteTask,
+  bootstrapBoard, normalize, boardStats, addTask, updateTask, moveTask, deleteTask, nestCardAsChecklist,
   toggleChecklistItem, addChecklistItem, updateChecklistItem, deleteChecklistItem, reorderChecklistItem, addLink, deleteLink,
   setPayments, mergePayments, addPayment, updatePayment, deletePayment, setEvents, addEvent,
   deleteEvent, mergeWeekly, addColumn, renameColumn, reorderColumn, deleteColumn, archiveDone,
@@ -36,6 +36,7 @@ export async function POST(request) {
     case "updateTask": board = updateTask(board, payload.id, payload.patch || {}); break;
     case "moveTask": board = moveTask(board, payload.id, payload.column, payload.order); break;
     case "deleteTask": board = deleteTask(board, payload.id); break;
+    case "nestCard": board = nestCardAsChecklist(board, payload.draggedId, payload.targetId); break;
     case "toggleChecklistItem": board = toggleChecklistItem(board, payload.taskId, payload.itemId); break;
     case "addChecklistItem": board = addChecklistItem(board, payload.taskId, payload.text); break;
     case "updateChecklistItem": board = updateChecklistItem(board, payload.taskId, payload.itemId, payload.text); break;
