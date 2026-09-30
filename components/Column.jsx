@@ -139,7 +139,7 @@ function Column({
               const rect = e.currentTarget.getBoundingClientRect();
               const ratio = (e.clientY - rect.top) / rect.height;
               setDragOverId(t.id);
-              setDragPos(ratio < 0.3 ? "before" : ratio > 0.7 ? "after" : "nest");
+              setDragPos(ratio < 0.15 ? "before" : ratio > 0.85 ? "after" : "nest");
             }}
             onDragLeave={(e) => {
               if (!e.currentTarget.contains(e.relatedTarget)) setDragOverId(null);
