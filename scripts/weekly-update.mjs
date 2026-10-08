@@ -134,7 +134,7 @@ async function main() {
     console.warn("⚠ BOARD_URL not set — live board will not be updated. Set it to your Vercel URL.");
   }
 
-  if (parsed.length === 0 && payments.length === 0) {
+  if (parsed.length === 0 && payments.length === 0 && events.length === 0) {
     console.log("No tasks or payments found in the summary. Nothing to do.");
     return;
   }
@@ -192,6 +192,7 @@ async function main() {
     }
   }
 
+  if (!events.length) console.warn("⚠ No CALENDAR events parsed from the summary — calendar not updated.");
   if (live && !has("--no-live") && events.length) {
     try {
       await postLive("setEvents", { events });
