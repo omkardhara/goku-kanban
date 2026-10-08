@@ -134,6 +134,8 @@ async function main() {
     console.warn("⚠ BOARD_URL not set — live board will not be updated. Set it to your Vercel URL.");
   }
 
+  if (!payments.length) console.warn("⚠ Parsed 0 payments — check the PAYMENTS FOLLOW-UP format in the summary.");
+
   if (parsed.length === 0 && payments.length === 0 && events.length === 0) {
     console.log("No tasks or payments found in the summary. Nothing to do.");
     return;
@@ -205,7 +207,7 @@ async function main() {
   let newTasks = candidates;
   if (live) {
     if (live.weeksImported?.includes(week) && !has("--force")) {
-      console.log(`Week ${week} tasks already imported. (Payments still refreshed.) Use --force to re-add tasks.`);
+      console.log(`Week ${week} tasks already imported (payments/calendar above, if any, were still synced). Use --force to re-add tasks.`);
       return;
     }
     const present = new Set(Object.keys(live.tasks || {}));

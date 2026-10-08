@@ -1,5 +1,5 @@
 {
-  "week": "2026-W28",
+  "week": "2026-W41",
   "tasks": [
     {
       "id": "wk_2026-W26_welcome",
@@ -410,6 +410,1617 @@
       "id": "wk_2026-W28_review-the-f-b-x-brands-and-brand-partnerships-agenda-docs-b",
       "source": "weekly",
       "week": "2026-W28"
+    },
+    {
+      "title": "Confirm status of the H&M contract amendment before Thursday's H&M",
+      "notes": "monthly connect",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W30_confirm-status-of-the-h-m-contract-amendment-before-thursday",
+      "source": "weekly",
+      "week": "2026-W30"
+    },
+    {
+      "title": "Send (or confirm you've sent) the H&M logo clarification email before",
+      "notes": "Thursday's H&M connect",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W30_send-or-confirm-you-ve-sent-the-h-m-logo-clarification-email",
+      "source": "weekly",
+      "week": "2026-W30"
+    },
+    {
+      "title": "Push for the updated RuPay logo on the Lolla 27 Sponsor Strip, given",
+      "notes": "the Jul 22 launch",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W30_push-for-the-updated-rupay-logo-on-the-lolla-27-sponsor-stri",
+      "source": "weekly",
+      "week": "2026-W30"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link (open 12 days)",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W30_send-allan-the-current-cs-team-onboarding-doc-link-open-12-d",
+      "source": "weekly",
+      "week": "2026-W30"
+    },
+    {
+      "title": "Confirm the SHEIN row is removed from the Sales Target Tracker 26-27",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W30_confirm-the-shein-row-is-removed-from-the-sales-target-track",
+      "source": "weekly",
+      "week": "2026-W30"
+    },
+    {
+      "title": "Monitor the Ed Sheeran/GroupM incentive letter signature (Krishna",
+      "notes": "leading)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W30_monitor-the-ed-sheeran-groupm-incentive-letter-signature-kri",
+      "source": "weekly",
+      "week": "2026-W30"
+    },
+    {
+      "title": "Send feedback on Lolla 27 timelines once Toral confirms pre-sale dates",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W30_send-feedback-on-lolla-27-timelines-once-toral-confirms-pre-",
+      "source": "weekly",
+      "week": "2026-W30"
+    },
+    {
+      "title": "Review the Brand Partnerships agenda doc before Thursday's meeting",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W30_review-the-brand-partnerships-agenda-doc-before-thursday-s-m",
+      "source": "weekly",
+      "week": "2026-W30"
+    },
+    {
+      "title": "Close the RuPay Sponsor Strip logo update before the Jul 22 KV launch",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W31_close-the-rupay-sponsor-strip-logo-update-before-the-jul-22-",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Prep the Lolla 27 freelance scope of work for Tuesday's Biweekly and",
+      "notes": "today's Manpower Allocation call",
+      "priority": null,
+      "flags": [],
+      "dueDate": "2026-07-27",
+      "column": "todo",
+      "id": "wk_2026-W31_prep-the-lolla-27-freelance-scope-of-work-for-tuesday-s-biwe",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Walk into the 2:00 PM H&M Marketing & Comms call ready on the contract",
+      "notes": "amendment and logo sign-off",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W31_walk-into-the-2-00-pm-h-m-marketing-comms-call-ready-on-the-",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Escalate Diageo via Yukta or Allan (Vaibhav silent ~3 weeks on 3 PTPs",
+      "notes": "and 4 John Mayer POs)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W31_escalate-diageo-via-yukta-or-allan-vaibhav-silent-3-weeks-on",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Confirm who picks up RTL/Budweiser and AB-InBev after Vijayesh's exit",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W31_confirm-who-picks-up-rtl-budweiser-and-ab-inbev-after-vijaye",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link (20 days open)",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W31_send-allan-the-current-cs-team-onboarding-doc-link-20-days-o",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Confirm the SHEIN row is removed from the Sales Target Tracker 26-27",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W31_confirm-the-shein-row-is-removed-from-the-sales-target-track",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Monitor the Ed Sheeran/GroupM incentive letter signature (Krishna",
+      "notes": "leading)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W31_monitor-the-ed-sheeran-groupm-incentive-letter-signature-kri",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Review the Brand Partnerships agenda doc before Thursday's meeting",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W31_review-the-brand-partnerships-agenda-doc-before-thursday-s-m",
+      "source": "weekly",
+      "week": "2026-W31"
+    },
+    {
+      "title": "Fastrack: get Diya's additional terms, add milestone dates, share the",
+      "notes": "revised three-year agreement, start onboarding",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_fastrack-get-diya-s-additional-terms-add-milestone-dates-sha",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Review and edit the \"Lolla 27 x Nivea 2027 Event - Revised.xlsx\" and",
+      "notes": "push the empanelment forward",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_review-and-edit-the-lolla-27-x-nivea-2027-event-revised-xlsx",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Support the Castrol (Power1) deck for GNR and Foo Fighters with Sweety",
+      "notes": "and the 2W Rock Block slides",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_support-the-castrol-power1-deck-for-gnr-and-foo-fighters-wit",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Lock a time for the RTL / Budweiser budget meeting and hold it (Lalit",
+      "notes": "confirmed both slots)",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_lock-a-time-for-the-rtl-budweiser-budget-meeting-and-hold-it",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Verify the RuPay Sponsor Strip logo closed with the Jul 22 KV launch",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_verify-the-rupay-sponsor-strip-logo-closed-with-the-jul-22-k",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_send-allan-the-current-cs-team-onboarding-doc-link",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Monitor the Ed Sheeran / GroupM incentive letter signature (Krishna",
+      "notes": "leading)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_monitor-the-ed-sheeran-groupm-incentive-letter-signature-kri",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Follow up on H&M Backstage now that Therese and Ashwarya are back",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_follow-up-on-h-m-backstage-now-that-therese-and-ashwarya-are",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Give input on the sustainability inventory list Toral shared",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W32_give-input-on-the-sustainability-inventory-list-toral-shared",
+      "source": "weekly",
+      "week": "2026-W32"
+    },
+    {
+      "title": "Work through Imran's comments needing business inputs on the Fastrack",
+      "notes": "agreement before the 3:30 PM call today",
+      "priority": null,
+      "flags": [],
+      "dueDate": "2026-08-10",
+      "column": "todo",
+      "id": "wk_2026-W33_work-through-imran-s-comments-needing-business-inputs-on-the",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Stop using yukta.raje@bookmyshow.com, confirm who owns her open finance",
+      "notes": "items, reroute escalations via Ashok, Anand or BMS Live Finance",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_stop-using-yukta-raje-bookmyshow-com-confirm-who-owns-her-op",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Confirm the BMS vendor registration pack (GST, MSME, cancelled cheque,",
+      "notes": "PAN, VR form) reached Titan, and that Puberun's logo and brand details arrived",
+      "priority": null,
+      "flags": [
+        "bms",
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_confirm-the-bms-vendor-registration-pack-gst-msme-cancelled-",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Hold the line on Coca-Cola: no signing on either option before Aug 5,",
+      "notes": "support the options 2, 3 and 4 walkthrough",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_hold-the-line-on-coca-cola-no-signing-on-either-option-befor",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Answer Lalit on H&M contracting so he can set the forex position",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_answer-lalit-on-h-m-contracting-so-he-can-set-the-forex-posi",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Follow up Beau Hayes on the Live Nation commission now that he is back",
+      "notes": "(Aug 3) and close it",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_follow-up-beau-hayes-on-the-live-nation-commission-now-that-",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Check which rows on Nikhil's updated pending contracts list are yours",
+      "notes": "and close them",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_check-which-rows-on-nikhil-s-updated-pending-contracts-list-",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Close out the Castrol (Power1) integration deck with Sweety, Charu and",
+      "notes": "Uttam",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_close-out-the-castrol-power1-integration-deck-with-sweety-ch",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Edit the \"Lolla 27 x Nivea 2027 Event - Revised.xlsx\" and move the",
+      "notes": "empanelment forward",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_edit-the-lolla-27-x-nivea-2027-event-revised-xlsx-and-move-t",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Read Chitra's Close Up associate ideas doc and respond",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_read-chitra-s-close-up-associate-ideas-doc-and-respond",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Give input on Shraddha's AI Agents and Pet category briefs",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_give-input-on-shraddha-s-ai-agents-and-pet-category-briefs",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Escalate ITC / Jagran / PMC past Sanjana (over 2 months silent)",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_escalate-itc-jagran-pmc-past-sanjana-over-2-months-silent",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Check with Saumitra on the HUL / Bigtree VP approval",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_check-with-saumitra-on-the-hul-bigtree-vp-approval",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_send-allan-the-current-cs-team-onboarding-doc-link",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Confirm the SHEIN row is off the Sales Target Tracker 26-27",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W33_confirm-the-shein-row-is-off-the-sales-target-tracker-26-27",
+      "source": "weekly",
+      "week": "2026-W33"
+    },
+    {
+      "title": "Get the Coca-Cola decision status from Therese and Vanita, the Aug 5",
+      "notes": "hold has expired",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_get-the-coca-cola-decision-status-from-therese-and-vanita-th",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Send Fastrack the usable Lolla India 2027 assets and guidelines",
+      "notes": "(committed Aug 7, due this week), route via Diya since Puberun is out until Aug 17",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_send-fastrack-the-usable-lolla-india-2027-assets-and-guideli",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Connect Chaithali Rai (Dentsu) with the BMS production SPOC for the",
+      "notes": "Lenovo content brief",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_connect-chaithali-rai-dentsu-with-the-bms-production-spoc-fo",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Settle the RuPay social co-post count with Lalit, Swapnil, Toral and",
+      "notes": "Salonie before the Aug 25 announcement",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_settle-the-rupay-social-co-post-count-with-lalit-swapnil-tor",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Read Jashank's Aug 7 reply on the Lolla 27 activation real estate",
+      "notes": "before Thursday's Brand Partnerships call",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_read-jashank-s-aug-7-reply-on-the-lolla-27-activation-real-e",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Respond to Vanita's Lolla 27 brand planning sessions request",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_respond-to-vanita-s-lolla-27-brand-planning-sessions-request",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Log the Diageo Lolla 27 co-presenting RTL commitment (6 shows, 20",
+      "notes": "guestlist names for own club shows) in the deliverables tracker",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_log-the-diageo-lolla-27-co-presenting-rtl-commitment-6-shows",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Follow up Tata Power, Parle Agro, Kokuyo Camlin, HCL Tech, Recity and",
+      "notes": "Those In Need on the Aug 6 outreach",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_follow-up-tata-power-parle-agro-kokuyo-camlin-hcl-tech-recit",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Restart H&M with Bianca Franklin (back Aug 10) and give Lalit the",
+      "notes": "contracting explanation for the forex call",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_restart-h-m-with-bianca-franklin-back-aug-10-and-give-lalit-",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_send-allan-the-current-cs-team-onboarding-doc-link",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Respond to the Aug 18 Brands x Production invite on Emerging Tech and",
+      "notes": "Ideation for Sponsors",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W34_respond-to-the-aug-18-brands-x-production-invite-on-emerging",
+      "source": "weekly",
+      "week": "2026-W34"
+    },
+    {
+      "title": "Go back to Titan on the watch sales revenue share at 40% post tax per",
+      "notes": "Rustom, not the 20% quoted from the H&M DPM",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_go-back-to-titan-on-the-watch-sales-revenue-share-at-40-post",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Get festival approval on the Fastrack SKU list for on-ground sale",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_get-festival-approval-on-the-fastrack-sku-list-for-on-ground",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Ask Priyala to add the revenue share and quantity terms into the",
+      "notes": "Fastrack agreement",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_ask-priyala-to-add-the-revenue-share-and-quantity-terms-into",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Send Diya a PDF or Drive copy of the Lolla 27 toolkit and guidelines,",
+      "notes": "the Canva link does not open on Titan's system",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_send-diya-a-pdf-or-drive-copy-of-the-lolla-27-toolkit-and-gu",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Add Sprite to the sponsor strip, deliverables tracker and Shlok's",
+      "notes": "announcement sheet once Therese confirms the DPM is signed",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_add-sprite-to-the-sponsor-strip-deliverables-tracker-and-shl",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Share availability with Chaithali Rai for the Lenovo content team call,",
+      "notes": "committed Aug 10",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_share-availability-with-chaithali-rai-for-the-lenovo-content",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Get Priyala's sign-off on the deliverable sheet theft and damage clause",
+      "notes": "and put it in the live template",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_get-priyala-s-sign-off-on-the-deliverable-sheet-theft-and-da",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Give Shraddha input on the AI deck (Aug 14 request)",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_give-shraddha-input-on-the-ai-deck-aug-14-request",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Accept the Friday Aug 21 H&M monthly connect invite",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_accept-the-friday-aug-21-h-m-monthly-connect-invite",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Settle the RuPay social co-post count with Lalit, Swapnil, Toral and",
+      "notes": "Salonie before Aug 25",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_settle-the-rupay-social-co-post-count-with-lalit-swapnil-tor",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Log the Diageo Lolla 27 co-presenting RTL commitment (6 shows, 20",
+      "notes": "guestlist names for own club shows) in the deliverables tracker",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_log-the-diageo-lolla-27-co-presenting-rtl-commitment-6-shows",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Follow up Parle Agro, Kokuyo Camlin, HCL Tech, Recity and Those In Need",
+      "notes": "on the Aug 6 outreach (only Tata Power has been chased)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_follow-up-parle-agro-kokuyo-camlin-hcl-tech-recity-and-those",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W35_send-allan-the-current-cs-team-onboarding-doc-link",
+      "source": "weekly",
+      "week": "2026-W35"
+    },
+    {
+      "title": "Resolve the Nivea logo size properly, Simone rejected the",
+      "notes": "maximum-height answer this morning and hoardings go live Aug 30",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_resolve-the-nivea-logo-size-properly-simone-rejected-the",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Share the Nivea ILU with the revised logo",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_share-the-nivea-ilu-with-the-revised-logo",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Open the Wellbeing Nutrition / Hydrasalts onboarding: kick-off thread,",
+      "notes": "deliverables sheet, logo on the sponsor strip, contract",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_open-the-wellbeing-nutrition-hydrasalts-onboarding-kick-off-",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Set an agenda for today's Nivea Influencer Discussion",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": "2026-09-01",
+      "column": "todo",
+      "id": "wk_2026-W36_set-an-agenda-for-today-s-nivea-influencer-discussion",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Send Salonie the activation guidelines and the video Janine asked for",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_send-salonie-the-activation-guidelines-and-the-video-janine-",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Land the Fastrack watch sale revenue share number with Titan, 40% post",
+      "notes": "tax per Rustom, open since Aug 17",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_land-the-fastrack-watch-sale-revenue-share-number-with-titan",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Confirm what the resolved Fastrack ticket allocation percentage is on",
+      "notes": "the Ticketing Valuation sheet",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_confirm-what-the-resolved-fastrack-ticket-allocation-percent",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Answer Toral's two pre-sale questions: tickets per transaction, and",
+      "notes": "whether one card is locked to one transaction",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_answer-toral-s-two-pre-sale-questions-tickets-per-transactio",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Flag that RuPay test card details including CVV should not be shared",
+      "notes": "over email",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_flag-that-rupay-test-card-details-including-cvv-should-not-b",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Confirm the pending supporting documents were loaded on the Diageo",
+      "notes": "portal per Vaibhav's Aug 17 hygiene note",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_confirm-the-pending-supporting-documents-were-loaded-on-the-",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Push the projects team for the Lolla brief so Bisleri can size the",
+      "notes": "Vedica stock requirement",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_push-the-projects-team-for-the-lolla-brief-so-bisleri-can-si",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Route the korda.dev enquiry to BD or platform",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_route-the-korda-dev-enquiry-to-bd-or-platform",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Get Priyala's sign-off on the deliverable sheet theft and damage clause",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_get-priyala-s-sign-off-on-the-deliverable-sheet-theft-and-da",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Share availability with Chaithali Rai for the Lenovo content team call,",
+      "notes": "committed Aug 10",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_share-availability-with-chaithali-rai-for-the-lenovo-content",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Confirm Nivea empanelment progressed after the Aug 4 documents to",
+      "notes": "Rashmi Nandoskar",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_confirm-nivea-empanelment-progressed-after-the-aug-4-documen",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Confirm BMS Live Finance empanelled Potatohead against Parth's Aug 7 VRF",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_confirm-bms-live-finance-empanelled-potatohead-against-parth",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Log the Diageo Lolla 27 co-presenting RTL commitment in the",
+      "notes": "deliverables tracker",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_log-the-diageo-lolla-27-co-presenting-rtl-commitment-in-the",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Follow up Parle Agro, Kokuyo Camlin, HCL Tech, Recity and Those In Need",
+      "notes": "on the Aug 6 outreach",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_follow-up-parle-agro-kokuyo-camlin-hcl-tech-recity-and-those",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Follow up Beau Hayes on the Live Nation commission confirmation",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_follow-up-beau-hayes-on-the-live-nation-commission-confirmat",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Escalate ITC / Jagran / PMC past Sanjana",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_escalate-itc-jagran-pmc-past-sanjana",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Check with Saumitra on the HUL / Bigtree VP approval",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_check-with-saumitra-on-the-hul-bigtree-vp-approval",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_send-allan-the-current-cs-team-onboarding-doc-link",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Confirm the SHEIN row is off the Sales Target Tracker 26-27",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W36_confirm-the-shein-row-is-off-the-sales-target-tracker-26-27",
+      "source": "weekly",
+      "week": "2026-W36"
+    },
+    {
+      "title": "Reply to Janine Orsi on the Fastrack creative, including whether the",
+      "notes": "red is Lolla red, and confirm whether Fastrack can post (open since Aug 28)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_reply-to-janine-orsi-on-the-fastrack-creative-including-whet",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Close the 5-day brand asset notice point with Allan, Toral and Shlok in",
+      "notes": "writing, and put it in the deliverable sheet template",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_close-the-5-day-brand-asset-notice-point-with-allan-toral-an",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Send the carousel reshare ask to Sprite, Airbnb, Fastrack, H&M, RuPay,",
+      "notes": "Budweiser 0.0 and Johnnie Walker",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_send-the-carousel-reshare-ask-to-sprite-airbnb-fastrack-h-m-",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Track the Nivea contract back from legal after the Aug 27 commercial",
+      "notes": "version",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_track-the-nivea-contract-back-from-legal-after-the-aug-27-co",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Grant Shlok Bhatia and Ingrid Dsouza access to Final Lolla '27 Brands",
+      "notes": "Budgeting",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_grant-shlok-bhatia-and-ingrid-dsouza-access-to-final-lolla-2",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Push Vaibhav on the 3 Diageo PTPs and the 4 John Mayer portal POs",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_push-vaibhav-on-the-3-diageo-ptps-and-the-4-john-mayer-porta",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Get the RuPay pre-sale reporting resolved with Rushabh Shah, dashboard",
+      "notes": "walkthrough or email report",
+      "priority": null,
+      "flags": [
+        "bms",
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_get-the-rupay-pre-sale-reporting-resolved-with-rushabh-shah-",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Get Priyala's sign-off on the deliverable sheet theft and damage clause",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_get-priyala-s-sign-off-on-the-deliverable-sheet-theft-and-da",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Route the korda.dev enquiry to BD or platform, second ask received Aug",
+      "notes": "27",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_route-the-korda-dev-enquiry-to-bd-or-platform-second-ask-rec",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Decide and reply on the FLEXFX Media inbound of Sep 1",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_decide-and-reply-on-the-flexfx-media-inbound-of-sep-1",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Share availability with Chaithali Rai for the Lenovo content team call,",
+      "notes": "committed Aug 10",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_share-availability-with-chaithali-rai-for-the-lenovo-content",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Log the Diageo Lolla 27 co-presenting RTL commitment in the",
+      "notes": "deliverables tracker",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_log-the-diageo-lolla-27-co-presenting-rtl-commitment-in-the",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_send-allan-the-current-cs-team-onboarding-doc-link",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Follow up Parle Agro, Kokuyo Camlin, HCL Tech, Recity, Those In Need",
+      "notes": "and Tata Power on the Aug outreach",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W37_follow-up-parle-agro-kokuyo-camlin-hcl-tech-recity-those-in-",
+      "source": "weekly",
+      "week": "2026-W37"
+    },
+    {
+      "title": "Get brand sign-off on the OOH press release descriptor lines before 3",
+      "notes": "PM today, and settle who owns those lines going forward",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": "2026-09-16",
+      "column": "todo",
+      "id": "wk_2026-W38_get-brand-sign-off-on-the-ooh-press-release-descriptor-lines",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Decide whether Imran Karachiwalla joins the 2 PM Fastrack contract",
+      "notes": "call, or confirm the legal-to-legal slot to Diya separately",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_decide-whether-imran-karachiwalla-joins-the-2-pm-fastrack-co",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Send Priyanka the Nivea activation layout reference, next to Perry's",
+      "notes": "Stage, per Vanita's Sep 5 note",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_send-priyanka-the-nivea-activation-layout-reference-next-to-",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Share the Nivea NDA with Beiersdorf, forwarded by Krishna on Sep 3",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_share-the-nivea-nda-with-beiersdorf-forwarded-by-krishna-on-",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Distribute the lineup KV to your brands with Janine's constraints: post",
+      "notes": "as is, single image, standalone not collab",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_distribute-the-lineup-kv-to-your-brands-with-janine-s-constr",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Read the three unread messages on the Lineup KV for Brands thread",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_read-the-three-unread-messages-on-the-lineup-kv-for-brands-t",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Close the 5 day brand asset notice rule with Allan, Toral and Shlok in",
+      "notes": "writing, and put it in the deliverable sheet template",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_close-the-5-day-brand-asset-notice-rule-with-allan-toral-and",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Send the carousel reshare ask to Sprite, Airbnb, Fastrack, H&M, RuPay,",
+      "notes": "Budweiser 0.0 and Johnnie Walker",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_send-the-carousel-reshare-ask-to-sprite-airbnb-fastrack-h-m-",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Reply to Shrey Sureka with the filled Ferrero India empanelment form,",
+      "notes": "asked Aug 31",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_reply-to-shrey-sureka-with-the-filled-ferrero-india-empanelm",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Flag that swapnil.mane@bookmyshow.com is bouncing and remove or replace",
+      "notes": "him on the partnership threads",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_flag-that-swapnil-mane-bookmyshow-com-is-bouncing-and-remove",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Grant Shlok Bhatia and Ingrid Dsouza access to Final Lolla '27 Brands",
+      "notes": "Budgeting, requested Aug 27",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_grant-shlok-bhatia-and-ingrid-dsouza-access-to-final-lolla-2",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Push Vaibhav on the 3 Diageo PTPs and the 4 John Mayer portal POs",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_push-vaibhav-on-the-3-diageo-ptps-and-the-4-john-mayer-porta",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Get the RuPay pre-sale reporting resolved with Rushabh Shah",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_get-the-rupay-pre-sale-reporting-resolved-with-rushabh-shah",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Get Priyala's sign-off on the deliverable sheet theft and damage clause",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_get-priyala-s-sign-off-on-the-deliverable-sheet-theft-and-da",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Route the korda.dev enquiry to BD or platform, second ask received Aug",
+      "notes": "27",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_route-the-korda-dev-enquiry-to-bd-or-platform-second-ask-rec",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Decide and reply on the FLEXFX Media inbound of Sep 1",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_decide-and-reply-on-the-flexfx-media-inbound-of-sep-1",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Share availability with Chaithali Rai for the Lenovo content team call,",
+      "notes": "committed Aug 10",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_share-availability-with-chaithali-rai-for-the-lenovo-content",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Log the Diageo Lolla 27 co-presenting RTL commitment in the",
+      "notes": "deliverables tracker",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_log-the-diageo-lolla-27-co-presenting-rtl-commitment-in-the",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Send Allan the current CS Team Onboarding Doc link",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_send-allan-the-current-cs-team-onboarding-doc-link",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Follow up Parle Agro, Kokuyo Camlin, HCL Tech, Recity, Those In Need",
+      "notes": "and Tata Power on the Aug outreach",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W38_follow-up-parle-agro-kokuyo-camlin-hcl-tech-recity-those-in-",
+      "source": "weekly",
+      "week": "2026-W38"
+    },
+    {
+      "title": "Align with Rustom and Imran on a counter to Diya's 20% revenue share",
+      "notes": "ask before confirming the Fastrack legal call slot",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_align-with-rustom-and-imran-on-a-counter-to-diya-s-20-revenu",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Read Janine's full September 16 mail on the sponsor webpage and align",
+      "notes": "with Allan and Aman before Thursday's meeting",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_read-janine-s-full-september-16-mail-on-the-sponsor-webpage-",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Distribute the lineup KV to brands under Janine's constraints (post as",
+      "notes": "is, single image, standalone)",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_distribute-the-lineup-kv-to-brands-under-janine-s-constraint",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Read the three unread messages on the Lineup KV for Brands thread",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_read-the-three-unread-messages-on-the-lineup-kv-for-brands-t",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Unblock the Ferrero India empanelment form with partnerships",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_unblock-the-ferrero-india-empanelment-form-with-partnerships",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Get the RuPay pre-sale Databricks walkthrough scheduled with Rushabh",
+      "notes": "before NPCI asks",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_get-the-rupay-pre-sale-databricks-walkthrough-scheduled-with",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Review the new \"Branding Checklist | Mastersheet | Sponsors 26-27\"",
+      "notes": "against existing trackers to avoid duplication",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_review-the-new-branding-checklist-mastersheet-sponsors-26-27",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Check with Saumitra on the HUL / Bigtree VP approval",
+      "notes": "",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_check-with-saumitra-on-the-hul-bigtree-vp-approval",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Route the korda.dev and FLEXFX Media inbounds to BD or platform to",
+      "notes": "close the loop",
+      "priority": null,
+      "flags": [
+        "bms"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_route-the-korda-dev-and-flexfx-media-inbounds-to-bd-or-platf",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "DONE Fastrack agreement moved forward, Titan came back with a revenue",
+      "notes": "share number, Sep 16",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_done-fastrack-agreement-moved-forward-titan-came-back-with-a",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "DONE Wellbeing Nutrition logo change confirmed in motion across",
+      "notes": "creative assets, Sep 12",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_done-wellbeing-nutrition-logo-change-confirmed-in-motion-acr",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "DONE Nivea activation layout location confirmed by Vanita (same as last",
+      "notes": "year, next to Perry's Stage), Sep 5",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W39_done-nivea-activation-layout-location-confirmed-by-vanita-sa",
+      "source": "weekly",
+      "week": "2026-W39"
+    },
+    {
+      "title": "Prep answers for Monday's Fastrack GST and invoicing call (3 to 3:15 PM)",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W41_prep-answers-for-monday-s-fastrack-gst-and-invoicing-call-3-",
+      "source": "weekly",
+      "week": "2026-W41"
+    },
+    {
+      "title": "Push internally to get the filled Ferrero empanelment form back to",
+      "notes": "Shrey Sureka",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W41_push-internally-to-get-the-filled-ferrero-empanelment-form-b",
+      "source": "weekly",
+      "week": "2026-W41"
+    },
+    {
+      "title": "Respond to Siddharth Gaurav's new H&M Backstage artist alignment thread",
+      "notes": "",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W41_respond-to-siddharth-gaurav-s-new-h-m-backstage-artist-align",
+      "source": "weekly",
+      "week": "2026-W41"
+    },
+    {
+      "title": "Close out the Vedica multi-IP contract deliverable points with Tausif",
+      "notes": "and Allan",
+      "priority": null,
+      "flags": [
+        "client"
+      ],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W41_close-out-the-vedica-multi-ip-contract-deliverable-points-wi",
+      "source": "weekly",
+      "week": "2026-W41"
+    },
+    {
+      "title": "Align internally on PRI's Rs 15 lakh merchandise and Rs 10 lakh ticket",
+      "notes": "procurement asks",
+      "priority": null,
+      "flags": [],
+      "dueDate": null,
+      "column": "todo",
+      "id": "wk_2026-W41_align-internally-on-pri-s-rs-15-lakh-merchandise-and-rs-10-l",
+      "source": "weekly",
+      "week": "2026-W41"
     }
   ],
   "payments": [
