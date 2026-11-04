@@ -50,7 +50,7 @@ export default function CardModal({
 
   const cols = [...(columns || []), { id: "archive", title: "Archive" }];
   const checks = task.checklist || [];
-  const lists = [{ id: "", title: "Checklist" }, ...(task.checklists || [])];
+  const lists = [{ id: "", title: task.checklistTitle || "Checklist" }, ...(task.checklists || [])];
   const links = task.links || [];
 
   function saveTitle() {
@@ -172,17 +172,14 @@ export default function CardModal({
           return (
         <div className="field" key={list.id || "main"}>
           <label style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            {list.id ? (
-              <input
-                className="input"
-                style={{ flex: 1, padding: "2px 6px" }}
-                defaultValue={list.title}
-                onBlur={(e) => { const v = e.target.value.trim(); if (v && v !== list.title) onRenameList(task.id, list.id, v); }}
-                onKeyDown={(e) => { if (e.key === "Enter") e.currentTarget.blur(); }}
-              />
-            ) : (
-              <span style={{ flex: 1 }}>{list.title}</span>
-            )}
+            <input
+              className="input"
+              style={{ flex: 1, padding: "2px 6px" }}
+              key={list.title}
+              defaultValue={list.title}
+              onBlur={(e) => { const v = e.target.value.trim(); if (v && v !== list.title) onRenameList(task.id, list.id, v); }}
+              onKeyDown={(e) => { if (e.key === "Enter") e.currentTarget.blur(); }}
+            />
             {listChecks.length > 0 && <span>({ld}/{listChecks.length})</span>}
             {list.id && (
               <button type="button" className="mini-del" aria-label="Delete checklist"
