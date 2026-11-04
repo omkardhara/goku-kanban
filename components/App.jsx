@@ -14,7 +14,7 @@ import { burstAt, shakeScreen } from "../lib/fx";
 import AddColumn from "./AddColumn";
 import ZoomControl from "./ZoomControl";
 import {
-  moveTask, updateTask, deleteTask, addTask, nestCardAsChecklist, toggleChecklistItem, addChecklistItem,
+  moveTask, updateTask, deleteTask, addTask, nestCardAsChecklist, toggleChecklistItem, addChecklistItem, addChecklist, renameChecklist, deleteChecklist,
   updateChecklistItem, deleteChecklistItem, reorderChecklistItem, addLink, deleteLink, addColumn, renameColumn,
   reorderColumn, deleteColumn, boardStats,
 } from "../lib/board";
@@ -271,7 +271,10 @@ export default function App() {
     }
     api("toggleChecklistItem", { taskId, itemId }, (b) => toggleChecklistItem(b, taskId, itemId));
   }, [board, api, smallCelebrate]);
-  const handleAddCheck = (taskId, text) => api("addChecklistItem", { taskId, text }, (b) => addChecklistItem(b, taskId, text));
+  const handleAddCheck = (taskId, text, listId) => api("addChecklistItem", { taskId, text, listId }, (b) => addChecklistItem(b, taskId, text, listId));
+  const handleAddList = (taskId, title) => api("addChecklist", { taskId, title }, (b) => addChecklist(b, taskId, title));
+  const handleRenameList = (taskId, listId, title) => api("renameChecklist", { taskId, listId, title }, (b) => renameChecklist(b, taskId, listId, title));
+  const handleDelList = (taskId, listId) => api("deleteChecklist", { taskId, listId }, (b) => deleteChecklist(b, taskId, listId));
   const handleUpdateCheck = (taskId, itemId, text) => api("updateChecklistItem", { taskId, itemId, text }, (b) => updateChecklistItem(b, taskId, itemId, text));
   const handleDelCheck = (taskId, itemId) => api("deleteChecklistItem", { taskId, itemId }, (b) => deleteChecklistItem(b, taskId, itemId));
   const handleReorderCheck = (taskId, draggedId, targetId, pos) => api("reorderChecklistItem", { taskId, draggedId, targetId, pos }, (b) => reorderChecklistItem(b, taskId, draggedId, targetId, pos));
@@ -491,6 +494,9 @@ export default function App() {
           onDelete={handleDelete}
           onToggleCheck={handleToggleCheck}
           onAddCheck={handleAddCheck}
+          onAddList={handleAddList}
+          onRenameList={handleRenameList}
+          onDelList={handleDelList}
           onUpdateCheck={handleUpdateCheck}
           onDelCheck={handleDelCheck}
           onReorderCheck={handleReorderCheck}

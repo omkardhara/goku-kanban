@@ -3,7 +3,7 @@ import { loadBoard, saveBoard } from "../../../lib/store";
 import { checkKey } from "../../../lib/auth";
 import {
   bootstrapBoard, normalize, boardStats, addTask, updateTask, moveTask, deleteTask, nestCardAsChecklist,
-  toggleChecklistItem, addChecklistItem, updateChecklistItem, deleteChecklistItem, reorderChecklistItem, addLink, deleteLink,
+  toggleChecklistItem, addChecklistItem, addChecklist, renameChecklist, deleteChecklist, updateChecklistItem, deleteChecklistItem, reorderChecklistItem, addLink, deleteLink,
   setPayments, mergePayments, addPayment, updatePayment, deletePayment, setEvents, addEvent,
   deleteEvent, mergeWeekly, addColumn, renameColumn, reorderColumn, deleteColumn, archiveDone,
 } from "../../../lib/board";
@@ -38,7 +38,10 @@ export async function POST(request) {
     case "deleteTask": board = deleteTask(board, payload.id); break;
     case "nestCard": board = nestCardAsChecklist(board, payload.draggedId, payload.targetId); break;
     case "toggleChecklistItem": board = toggleChecklistItem(board, payload.taskId, payload.itemId); break;
-    case "addChecklistItem": board = addChecklistItem(board, payload.taskId, payload.text); break;
+    case "addChecklistItem": board = addChecklistItem(board, payload.taskId, payload.text, payload.listId); break;
+    case "addChecklist": board = addChecklist(board, payload.taskId, payload.title); break;
+    case "renameChecklist": board = renameChecklist(board, payload.taskId, payload.listId, payload.title); break;
+    case "deleteChecklist": board = deleteChecklist(board, payload.taskId, payload.listId); break;
     case "updateChecklistItem": board = updateChecklistItem(board, payload.taskId, payload.itemId, payload.text); break;
     case "deleteChecklistItem": board = deleteChecklistItem(board, payload.taskId, payload.itemId); break;
     case "reorderChecklistItem": board = reorderChecklistItem(board, payload.taskId, payload.draggedId, payload.targetId, payload.pos); break;

@@ -17,6 +17,9 @@ export default function CardModal({
   onDelete,
   onToggleCheck,
   onAddCheck,
+  onAddList,
+  onRenameList,
+  onDelList,
   onUpdateCheck,
   onDelCheck,
   onReorderCheck,
@@ -25,7 +28,8 @@ export default function CardModal({
 }) {
   const [title, setTitle] = useState(task.title);
   const [notes, setNotes] = useState(task.notes || "");
-  const [newCheck, setNewCheck] = useState("");
+  const [newChecks, setNewChecks] = useState({});
+  const [newListTitle, setNewListTitle] = useState("");
   const [linkUrl, setLinkUrl] = useState("");
   const [linkLabel, setLinkLabel] = useState("");
   const [editingCheckId, setEditingCheckId] = useState(null);
@@ -46,9 +50,8 @@ export default function CardModal({
 
   const cols = [...(columns || []), { id: "archive", title: "Archive" }];
   const checks = task.checklist || [];
+  const lists = [{ id: "", title: "Checklist" }, ...(task.checklists || [])];
   const links = task.links || [];
-  const doneCount = checks.filter((c) => c.done).length;
-  const pct = checks.length ? Math.round((doneCount / checks.length) * 100) : 0;
 
   function saveTitle() {
     const v = title.trim();
@@ -65,11 +68,17 @@ export default function CardModal({
   function setPrio(p) {
     onUpdate(task.id, { priority: task.priority === p ? null : p });
   }
-  function submitCheck(e) {
+  function submitCheck(e, listId) {
     e.preventDefault();
-    const v = newCheck.trim();
-    if (v) onAddCheck(task.id, v);
-    setNewCheck("");
+    const v = (newChecks[listId] || "").trim();
+    if (v) onAddCheck(task.id, v, listId || undefined);
+    setNewChecks((m) => ({ ...m, [listId]: "" }));
+  }
+  function submitList(e) {
+    e.preventDefault();
+    const v = newListTitle.trim();
+    if (v) onAddList(task.id, v);
+    setNewListTitle("");
   }
   function startEditCheck(item) {
     setEditingCheckId(item.id);
@@ -156,76 +165,109 @@ export default function CardModal({
           />
         </div>
 
-        <div className="field">
-          <label>Checklist {checks.length > 0 && `(${doneCount}/${checks.length})`}</label>
-          {checks.length > 0 && (
+        {lists.map((list) => {
+          const listChecks = checks.filter((c) => (c.list || "") === list.id);
+          const ld = listChecks.filter((c) => c.done).length;
+          const lp = listChecks.length ? Math.round((ld / listChecks.length) * 100) : 0;
+          return (
+        <div className="field" key={list.id || "main"}>
+          <label style={{ display: "flex", alignItems: "center", gap: 6 }}>
+            {list.id ? (
+              <input
+                className="input"
+                style={{ flex: 1, padding: "2px 6px" }}
+                defaultValue={list.title}
+                onBlur={(e) => { const v = e.target.value.trim(); if (v && v !== list.title) onRenameList(task.id, list.id, v); }}
+                onKeyDown={(e) => { if (e.key === "Enter") e.currentTarget.blur(); }}
+              />
+            ) : (
+              <span style={{ flex: 1 }}>{list.title}</span>
+            )}
+            {listChecks.length > 0 && <span>({ld}/{listChecks.length})</span>}
+            {list.id && (
+              <button type="button" className="mini-del" aria-label="Delete checklist"
+                onClick={() => { if (window.confirm(`Delete checklist "${list.title}"?`)) onDelList(task.id, list.id); }}>×</button>
+            )}
+          </label>
+          {listChecks.length > 0 && (
             <div className="check-progress" style={{ marginBottom: 8 }}>
-              <div style={{ width: `${pct}%` }} />
+              <div style={{ width: `${lp}%` }} />
             </div>
           )}
-          <div className="checklist">
-            {checks.map((c) => (
-              <div
-                key={c.id}
-                className={`check-slot${dragOverCheckId === c.id ? ` insert-${dragCheckPos}` : ""}`}
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  setDragOverCheckId(c.id);
-                  setDragCheckPos(e.clientY < rect.top + rect.height / 2 ? "before" : "after");
-                }}
-                onDragLeave={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget)) setDragOverCheckId(null);
-                }}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  const pos = dragCheckPos;
-                  setDragOverCheckId(null);
-                  const draggedId = e.dataTransfer.getData("text/plain");
-                  if (draggedId && draggedId !== c.id) onReorderCheck(task.id, draggedId, c.id, pos);
-                }}
-              >
-                <div className={`check ${c.done ? "done" : ""}`}>
-                  <span
-                    className="check-drag-handle"
-                    draggable
-                    title="Drag to reorder"
-                    onDragStart={(e) => {
-                      e.dataTransfer.setData("text/plain", c.id);
-                      e.dataTransfer.effectAllowed = "move";
+              <div className="checklist">
+                {listChecks.map((c) => (
+                  <div
+                    key={c.id}
+                    className={`check-slot${dragOverCheckId === c.id ? ` insert-${dragCheckPos}` : ""}`}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      setDragOverCheckId(c.id);
+                      setDragCheckPos(e.clientY < rect.top + rect.height / 2 ? "before" : "after");
                     }}
-                  >⠿</span>
-                  <input type="checkbox" checked={c.done} onChange={() => onToggleCheck(task.id, c.id)} />
-                  {editingCheckId === c.id ? (
-                    <input
-                      className="input check-edit-input"
-                      autoFocus
-                      value={editingCheckText}
-                      onChange={(e) => setEditingCheckText(e.target.value)}
-                      onBlur={commitEditCheck}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") e.currentTarget.blur();
-                        if (e.key === "Escape") { e.stopPropagation(); setEditingCheckId(null); }
-                      }}
-                    />
-                  ) : (
-                    <span style={{ flex: 1 }} title="Click to edit" onClick={() => startEditCheck(c)}>{c.text}</span>
-                  )}
-                  <button className="mini-del" onClick={() => onDelCheck(task.id, c.id)} aria-label="Remove">×</button>
-                </div>
+                    onDragLeave={(e) => {
+                      if (!e.currentTarget.contains(e.relatedTarget)) setDragOverCheckId(null);
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      const pos = dragCheckPos;
+                      setDragOverCheckId(null);
+                      const draggedId = e.dataTransfer.getData("text/plain");
+                      if (draggedId && draggedId !== c.id) onReorderCheck(task.id, draggedId, c.id, pos);
+                    }}
+                  >
+                    <div className={`check ${c.done ? "done" : ""}`}>
+                      <span
+                        className="check-drag-handle"
+                        draggable
+                        title="Drag to reorder"
+                        onDragStart={(e) => {
+                          e.dataTransfer.setData("text/plain", c.id);
+                          e.dataTransfer.effectAllowed = "move";
+                        }}
+                      >⠿</span>
+                      <input type="checkbox" checked={c.done} onChange={() => onToggleCheck(task.id, c.id)} />
+                      {editingCheckId === c.id ? (
+                        <input
+                          className="input check-edit-input"
+                          autoFocus
+                          value={editingCheckText}
+                          onChange={(e) => setEditingCheckText(e.target.value)}
+                          onBlur={commitEditCheck}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") e.currentTarget.blur();
+                            if (e.key === "Escape") { e.stopPropagation(); setEditingCheckId(null); }
+                          }}
+                        />
+                      ) : (
+                        <span style={{ flex: 1 }} title="Click to edit" onClick={() => startEditCheck(c)}>{c.text}</span>
+                      )}
+                      <button className="mini-del" onClick={() => onDelCheck(task.id, c.id)} aria-label="Remove">×</button>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <form onSubmit={submitCheck}>
+          <form onSubmit={(e) => submitCheck(e, list.id)}>
             <input
               className="input"
               style={{ marginTop: 8 }}
               placeholder="Add a checklist item + Enter"
-              value={newCheck}
-              onChange={(e) => setNewCheck(e.target.value)}
+              value={newChecks[list.id] || ""}
+              onChange={(e) => setNewChecks((m) => ({ ...m, [list.id]: e.target.value }))}
             />
           </form>
         </div>
+          );
+        })}
+
+        <form className="field" onSubmit={submitList}>
+          <input
+            className="input"
+            placeholder="+ Add another checklist (name) + Enter"
+            value={newListTitle}
+            onChange={(e) => setNewListTitle(e.target.value)}
+          />
+        </form>
 
         <div className="field">
           <label>Links & attachments</label>
